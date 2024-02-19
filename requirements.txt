@@ -1,0 +1,12 @@
+Flask
+zarr
+xarray
+numpy
+pandas
+scipy
+shapely == 1.8.4
+rioxarray
+setuptools
+flasgger
+pyproj
+requests

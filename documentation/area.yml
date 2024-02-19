@@ -1,0 +1,309 @@
+Query end point for area queries of collection {collectionId} defined by a polygon
+Return the data values for the data area defined by the query parameters
+---
+tags:
+  - Collection data queries
+parameters:
+  - name: collectionId
+    in: path
+    description: Identifier (id) of a specific collection
+    schema:
+      type: string
+      enum: ['safran-isba']
+    required: true
+    default: safran-isba
+  - name: coords
+    in: query
+    description: Only data that has a geometry that intersects the area defined by the polygon are selected.The polygon is defined using a Well Known Text string following :\ coords=POLYGON((x y,x1 y1,x2 y2,...,xn yn x y))
+    schema:
+      type: string
+    required: true
+    default: POLYGON((-4 48,-3 48,-3 49,-4 49,-4 48))
+  - name: datetime
+    in: query
+    description: Either a date-time or an interval. Date and time expressions adhere to RFC 3339. Intervals may be bounded or half-bounded (double-dots at start or end). Examples:\date-time:\ "2018-02-12T23:20:50Z" * A bounded interval:\ "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z"
+    schema:
+      type: string
+    required: false
+    examples:
+      single:
+        summary: Simple date
+        value: "1960-01-01T00:00:00Z"
+      double:
+        summary: Intervalle
+        value: "1958-08-01T00:00:00.00Z/1958-08-11T00:00:00Z"
+  - name: parameter-name
+    in: query
+    description: comma delimited list of parameters to retrieve data for. Valid parameters are listed in the collections metadata
+    required: false
+    schema:
+      type: string
+    examples:
+      single:
+        summary: Single
+        value: FF_Q
+      double:
+        summary: List
+        value: T_Q,FF_Q
+  - name: crs
+    in: query
+    description: identifier (id) of the coordinate system to return data in list of valid crs identifiers for the chosen collection are defined in the metadata responses. If not supplied the coordinate reference system will default to WGS84.
+    required: false
+    schema:
+      type: string
+      enum: ['EPSG:4326','EPSG:2154','IGNF:LAMBE']
+    default: "EPSG:4326"
+  - name: f
+    in: query
+    description: format to return the data response in
+    required: false
+    schema:
+      type: string
+      enum: ['CSV','CoverageJSON','Netcdf4']
+    default: "CoverageJSON"
+responses:
+  200:
+    description: Data ranges required to construct valid queries for the choosen data collection
+    content:
+      application/json:
+        schema:
+          type: object
+        examples:
+          response:
+            value: {
+                    "type": "Coverage",
+                    "domain": {
+                      "type": "Domain",
+                      "domainType": "Grid",
+                      "axes": {
+                        "x": {
+                          "start": -4.237177310151691,
+                          "stop": -3.9529520686326687,
+                          "num": 4
+                        },
+                        "y": {
+                          "start": 48.4782151456426,
+                          "stop": 48.57295689281561,
+                          "num": 2
+                        },
+                        "t": {
+                          "start": "1958-08-01T00:00:00.000000000",
+                          "stop": "1958-08-08T00:00:00.000000000",
+                          "num": 8
+                        }
+                      },
+                      "referencing": [
+                        {
+                          "coordinates": [
+                            "x",
+                            "y"
+                          ],
+                          "system": {
+                            "type": "GeographicCRS",
+                            "id": "EPSG:4326"
+                          }
+                        },
+                        {
+                          "coordinates": "t",
+                          "system": {
+                            "type": "TemporalCRS",
+                            "calendar": "Gregorian"
+                          }
+                        }
+                      ]
+                    },
+                    "parameters": {
+                      "FF_Q": {
+                        "type": "Parameter",
+                        "description": "Vent (moyenne quotidienne)",
+                        "unit": {
+                          "label": "mètre par seconde",
+                          "symbol": {
+                            "type": "https://fr.wikipedia.org/wiki/M%C3%A8tre_par_seconde",
+                            "value": "m/s"
+                          }
+                        },
+                        "observedProperty": {
+                          "id": "http://opendata.inrae.fr/thesaurusINRAE/c_11505",
+                          "label": "Vent"
+                        }
+                      },
+                      "T_Q": {
+                        "type": "Parameter",
+                        "description": "Température (moyenne quotidienne)",
+                        "unit": {
+                          "label": "degrée Celcius",
+                          "symbol": {
+                            "type": "https://fr.wikipedia.org/wiki/Degr%C3%A9_Celsius",
+                            "value": "°C"
+                          }
+                        },
+                        "observedProperty": {
+                          "id": "http://opendata.inrae.fr/thesaurusINRAE/c_1243",
+                          "label": "Température de l'air"
+                        }
+                      }
+                    },
+                    "ranges": {
+                      "FF_Q": {
+                        "type": "NdArray",
+                        "dataType": "object",
+                        "axisNames": [
+                          "y",
+                          "x",
+                          "t"
+                        ],
+                        "shape": [
+                          2,
+                          4,
+                          8
+                        ],
+                        "values": [
+                          4.199999809265137,
+                          4.199999809265137,
+                          4.199999809265137,
+                          null,
+                          4.199999809265137,
+                          4.199999809265137,
+                          4.199999809265137,
+                          4.199999809265137,
+                          3.700000047683716,
+                          3.700000047683716,
+                          3.700000047683716,
+                          null,
+                          3.700000047683716,
+                          3.700000047683716,
+                          3.799999952316284,
+                          3.799999952316284,
+                          5.699999809265137,
+                          5.699999809265137,
+                          5.699999809265137,
+                          null,
+                          5.900000095367432,
+                          5.900000095367432,
+                          5.900000095367432,
+                          5.900000095367432,
+                          5.900000095367432,
+                          6,
+                          6,
+                          null,
+                          6.099999904632568,
+                          6.099999904632568,
+                          6.199999809265137,
+                          6.199999809265137,
+                          3.5999999046325684,
+                          3.5999999046325684,
+                          3.5999999046325684,
+                          null,
+                          3.5999999046325684,
+                          3.5999999046325684,
+                          3.700000047683716,
+                          3.700000047683716,
+                          3.200000047683716,
+                          3.200000047683716,
+                          3.200000047683716,
+                          null,
+                          3.299999952316284,
+                          3.4000000953674316,
+                          3.4000000953674316,
+                          3.4000000953674316,
+                          4,
+                          4,
+                          4,
+                          null,
+                          4,
+                          4,
+                          4,
+                          4,
+                          4.199999809265137,
+                          4.199999809265137,
+                          4.199999809265137,
+                          null,
+                          4.199999809265137,
+                          4.199999809265137,
+                          4.199999809265137,
+                          4.199999809265137
+                        ]
+                      },
+                      "T_Q": {
+                        "type": "NdArray",
+                        "dataType": "object",
+                        "axisNames": [
+                          "y",
+                          "x",
+                          "t"
+                        ],
+                        "shape": [
+                          2,
+                          4,
+                          8
+                        ],
+                        "values": [
+                          15.800000190734863,
+                          15.600000381469727,
+                          15.699999809265137,
+                          null,
+                          15.699999809265137,
+                          15.600000381469727,
+                          15.399999618530273,
+                          15.399999618530273,
+                          14.600000381469727,
+                          14.5,
+                          14.5,
+                          null,
+                          14.800000190734863,
+                          14.800000190734863,
+                          14.699999809265137,
+                          14.699999809265137,
+                          15.899999618530273,
+                          15.800000190734863,
+                          15.800000190734863,
+                          null,
+                          15.800000190734863,
+                          15.800000190734863,
+                          15.699999809265137,
+                          15.699999809265137,
+                          16.899999618530273,
+                          16.799999237060547,
+                          16.899999618530273,
+                          null,
+                          16.899999618530273,
+                          16.799999237060547,
+                          16.600000381469727,
+                          16.600000381469727,
+                          15,
+                          15,
+                          15,
+                          null,
+                          14.899999618530273,
+                          14.899999618530273,
+                          14.899999618530273,
+                          14.899999618530273,
+                          13.5,
+                          13.399999618530273,
+                          13.5,
+                          null,
+                          13.600000381469727,
+                          13.600000381469727,
+                          13.5,
+                          13.5,
+                          14.600000381469727,
+                          14.5,
+                          14.5,
+                          null,
+                          14.399999618530273,
+                          14.399999618530273,
+                          14.300000190734863,
+                          14.300000190734863,
+                          16,
+                          15.899999618530273,
+                          16,
+                          null,
+                          16,
+                          16,
+                          15.899999618530273,
+                          15.899999618530273
+                        ]
+                      }
+                    }
+                  }

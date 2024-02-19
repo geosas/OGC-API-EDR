@@ -1,0 +1,59 @@
+Landing page of this API
+The landing page provides links to the API definition, the Conformance statements and the metadata about the feature data in this dataset.
+---
+tags:
+ - Capabilities
+responses:
+  200:
+    description: Links to the API capabilities
+    content:
+      application/json:
+        schema:
+          type: object
+        examples:
+          response:
+            value: {
+                    "title": "API EDR GéoSAS",
+                    "description": "API Environmental Data Retrevial  GéoSAS en test",
+                    "keywords": [
+                      "api",
+                      "EDR"
+                    ],
+                    "provider": {
+                      "name": "GéoSAS",
+                      "url": "https:/geosas.fr"
+                    },
+                    "contact": {
+                      "email": "geosas_adm@framalistes.org",
+                      "address": "UMR SAS - INRAE - Institut Agro, 65 rue de Saint-Brieuc",
+                      "postalcode": "35042",
+                      "city": "Rennes",
+                      "country": "France"
+                    },
+                    "links": [
+                      {
+                        "href": "psncalc2.agrocampus-ouest.fr/edr/edr",
+                        "rel": "self",
+                        "type": "application/json",
+                        "title": "this document"
+                      },
+                      {
+                        "href": "https://example.org/api",
+                        "rel": "service-desc",
+                        "type": "application/vnd.oai.openapi+json;version=3.0",
+                        "title": "the API definition"
+                      },
+                      {
+                        "href": "https://example.org/conformance",
+                        "rel": "conformance",
+                        "type": "application/json",
+                        "title": "OGC conformance classes implemented by this API"
+                      },
+                      {
+                        "href": "psncalc2.agrocampus-ouest.fr/edr/edr/collections",
+                        "rel": "data",
+                        "type": "application/json",
+                        "title": "Metadata about the resource collections"
+                      }
+                    ]
+                  }

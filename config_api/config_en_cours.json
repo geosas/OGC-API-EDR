@@ -1,0 +1,325 @@
+{
+    "safran-isba": {
+        "path": "/data2/meteo/safran/quotidien/SAFRAN_1958-2024_10_param.zarr",
+        "id": "safran-isba",
+        "title": "Safran-Isba, Données changement climatique - SIM quotidienne",
+        "description": "Données quotidiennes du modèle de simulation des schémas de surface (Safran - Isba). Paramètres atmosphériques de surface et bilans des sols en points de grille issus de l'analyse de modèle simulant les flux d’eau et d’énergie à la surface terrestre.",
+        "keywords": [
+            "Wind Speed",
+            "Air Temperature",
+            "Precipitation",
+            "Weather"
+        ],
+        "links": [
+            {
+                "href": "https://object.files.data.gouv.fr/meteofrance/data/synchro_ftp/REF_CC/SIM/doc_sim2_donneespubliques_221.pdf",
+                "hreflang": "fr",
+                "rel": "service-doc",
+                "type": "application/pdf"
+            },
+            {
+                "href": "https://meteo.data.gouv.fr/datasets/6569b27598256cc583c917a7",
+                "hreflang": "fr",
+                "rel": "data",
+                "type": "text/html"
+            },
+            {
+                "href": "https://www.etalab.gouv.fr/licence-ouverte-open-licence/",
+                "hreflang": "fr",
+                "rel": "license",
+                "type": "text/html"
+            }
+        ],
+        "extent": {
+            "spatial": {
+                "bbox": [
+                    [
+                        60000.0,
+                        1617000.0,
+                        1196000.0,
+                        2681000.0
+                    ]
+                ],
+                "crs": "IGNF:LAMBE"
+            },
+            "temporal": {
+                "interval": [
+                    [
+                        "1958-08-01T00:00:00.000000000",
+                        "2024-02-04T00:00:00.000000000"
+                    ]
+                ],
+                "trs": "TIMECRS[\"DateTime\",TDATUM[\"Gregorian Calendar\"],CS[TemporalDateTime,1],AXIS[\"Time (T)\",future]]",
+                "values": [
+                    "1958-08-01T00:00:00.000000000/2024-02-04T00:00:00.000000000"
+                ]
+            }
+        },
+        "crs": "IGNF:LAMBE",
+        "parameter_names": [
+            {
+                "DRAINC_Q": {
+                    "description": "Drainage (cumul quotidien 06-06 UTC)",
+                    "measurementType": {
+                        "duration": "PT24H",
+                        "method": "sum"
+                    },
+                    "observedProperty": {
+                        "id": "https://fr.wikipedia.org/wiki/Lame_d%27eau",
+                        "label": "Lame d'eau"
+                    },
+                    "type": "Parameter",
+                    "unit": {
+                        "label": "millimetre",
+                        "symbol": {
+                            "type": "https://fr.wikipedia.org/wiki/Millim%C3%A8tre",
+                            "value": "mm"
+                        }
+                    }
+                }
+            },
+            {
+                "ETP_Q": {
+                    "description": "Evapotranspiration potentielle (formule de Penman-Monteith)",
+                    "measurementType": {
+                        "duration": "PT24H",
+                        "method": "sum"
+                    },
+                    "observedProperty": {
+                        "id": "http://opendata.inrae.fr/thesaurusINRAE/c_241",
+                        "label": "Evapotranspiration potentielle"
+                    },
+                    "type": "Parameter",
+                    "unit": {
+                        "label": "millimetre",
+                        "symbol": {
+                            "type": "https://fr.wikipedia.org/wiki/Millim%C3%A8tre",
+                            "value": "mm"
+                        }
+                    }
+                }
+            },
+            {
+                "FF_Q": {
+                    "description": "Vent (moyenne quotidienne)",
+                    "measurementType": {
+                        "duration": "PT24H",
+                        "method": "mean"
+                    },
+                    "observedProperty": {
+                        "id": "http://opendata.inrae.fr/thesaurusINRAE/c_11505",
+                        "label": "Vent"
+                    },
+                    "type": "Parameter",
+                    "unit": {
+                        "label": "mètre par seconde",
+                        "symbol": {
+                            "type": "https://fr.wikipedia.org/wiki/M%C3%A8tre_par_seconde",
+                            "value": "m/s"
+                        }
+                    }
+                }
+            },
+            {
+                "PRELIQ_Q": {
+                    "description": "Précipitations liquides (cumul quotidien 06-06 UTC)",
+                    "measurementType": {
+                        "duration": "PT24H",
+                        "method": "sum"
+                    },
+                    "observedProperty": {
+                        "id": "http://opendata.inrae.fr/thesaurusINRAE/c_11627",
+                        "label": "Pluie"
+                    },
+                    "type": "Parameter",
+                    "unit": {
+                        "label": "millimetre",
+                        "symbol": {
+                            "type": "https://fr.wikipedia.org/wiki/Millim%C3%A8tre",
+                            "value": "mm"
+                        }
+                    }
+                }
+            },
+            {
+                "PRENEI_Q": {
+                    "description": "Précipitations solide (cumul quotidien 06-06 UTC)",
+                    "measurementType": {
+                        "duration": "PT24H",
+                        "method": "sum"
+                    },
+                    "observedProperty": {
+                        "id": "http://opendata.inrae.fr/thesaurusINRAE/c_11627",
+                        "label": "Pluie"
+                    },
+                    "type": "Parameter",
+                    "unit": {
+                        "label": "millimetre",
+                        "symbol": {
+                            "type": "https://fr.wikipedia.org/wiki/Millim%C3%A8tre",
+                            "value": "mm"
+                        }
+                    }
+                }
+            },
+            {
+                "SSI_Q": {
+                    "description": "Rayonnement atmosphérique (cumul quotidien)",
+                    "measurementType": {
+                        "duration": "PT24H",
+                        "method": "sum"
+                    },
+                    "observedProperty": {
+                        "id": "http://opendata.inrae.fr/thesaurusINRAE/c_14024",
+                        "label": "Rayonnement"
+                    },
+                    "type": "Parameter",
+                    "unit": {
+                        "label": "Joule par centimètre²",
+                        "symbol": {
+                            "type": "https://fr.wikipedia.org/wiki/Millim%C3%A8tre",
+                            "value": "J/cm²"
+                        }
+                    }
+                }
+            },
+            {
+                "TINF_H_Q": {
+                    "description": "Température minimale des 24 températures horaires",
+                    "measurementType": {
+                        "duration": "PT24H",
+                        "method": "minimale"
+                    },
+                    "observedProperty": {
+                        "id": "http://opendata.inrae.fr/thesaurusINRAE/c_1243",
+                        "label": "Température de l'air"
+                    },
+                    "type": "Parameter",
+                    "unit": {
+                        "label": "degrée Celcius",
+                        "symbol": {
+                            "type": "https://fr.wikipedia.org/wiki/Degr%C3%A9_Celsius",
+                            "value": "°C"
+                        }
+                    }
+                }
+            },
+            {
+                "TSUP_H_Q": {
+                    "description": "Température maximale des 24 températures horaires",
+                    "measurementType": {
+                        "duration": "PT24H",
+                        "method": "maximum"
+                    },
+                    "observedProperty": {
+                        "id": "http://opendata.inrae.fr/thesaurusINRAE/c_1243",
+                        "label": "Température de l'air"
+                    },
+                    "type": "Parameter",
+                    "unit": {
+                        "label": "degrée Celcius",
+                        "symbol": {
+                            "type": "https://fr.wikipedia.org/wiki/Degr%C3%A9_Celsius",
+                            "value": "°C"
+                        }
+                    }
+                }
+            },
+            {
+                "T_Q": {
+                    "description": "Température (moyenne quotidienne)",
+                    "measurementType": {
+                        "duration": "PT24H",
+                        "method": "moyenne"
+                    },
+                    "observedProperty": {
+                        "id": "http://opendata.inrae.fr/thesaurusINRAE/c_1243",
+                        "label": "Température de l'air"
+                    },
+                    "type": "Parameter",
+                    "unit": {
+                        "label": "degrée Celcius",
+                        "symbol": {
+                            "type": "https://fr.wikipedia.org/wiki/Degr%C3%A9_Celsius",
+                            "value": "°C"
+                        }
+                    }
+                }
+            }
+        ]
+    },
+    "RPG-Raster": {
+        "path": "/data2/rpg/rpg_2006-2021.zarr",
+        "id": "RPG-Raster",
+        "title": "Registre Parcellaire Graphique (RPG), rasterisé",
+        "description": "Cette API reconstitue l’histoire culturale de Bretagne, elle est basée sur le Référentiel Parcellaire Graphique (RPG) de 2006 à 2021 rasterisé à 10m.",
+        "keywords": [
+            "RPG",
+            "Registre Parcellaire Graphique",
+            "Culture"
+        ],
+        "links": [
+            {
+                "href": "https://www.data.gouv.fr/fr/datasets/registre-parcellaire-graphique-rpg-contours-des-parcelles-et-ilots-culturaux-et-leur-groupe-de-cultures-majoritaire/",
+                "hreflang": "fr",
+                "rel": "service-doc",
+                "type": "text/html"
+            },
+            {
+                "href": "https://geoservices.ign.fr/sites/default/files/2023-02/REF_CULTURES_GROUPES_CULTURES_2021.csv",
+                "hreflang": "fr",
+                "rel": "service-doc",
+                "type": "text/csv"
+            }
+        ],
+        "extent": {
+            "spatial": {
+                "bbox": [
+                    [
+                        115139.0,
+                        6704837.0,
+                        400949.0,
+                        6881027.0
+                    ]
+                ],
+                "crs": "EPSG:2154"
+            },
+            "temporal": {
+                "interval": [
+                    [
+                        "2006-01-01T00:00:00.000000000",
+                        "2021-01-01T00:00:00.000000000"
+                    ]
+                ],
+                "trs": "TIMECRS[\"DateTime\",TDATUM[\"Gregorian Calendar\"],CS[TemporalDateTime,1],AXIS[\"Time (T)\",future]]",
+                "values": [
+                    "2006-01-01T00:00:00.000000000/2021-01-01T00:00:00.000000000"
+                ]
+            }
+        },
+        "crs": "EPSG:2154",
+        "parameter_names": [
+            {
+                "code_culture": {
+                    "description": "Code du groupe de la culture principale de la parcelle",
+                    "measurementType": {
+                        "duration": "PT1Y",
+                        "method": "mode"
+                    },
+                    "observedProperty": {
+                        "id": "https://geoservices.ign.fr/sites/default/files/2023-11/DC_DL_RPG_2-1_0.pdf",
+                        "label": "CODE_GROUP"
+                    },
+                    "type": "Parameter",
+                    "unit": {
+                        "label": "Groupe de culture",
+                        "symbol": {
+                            "type": "",
+                            "value": ""
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}

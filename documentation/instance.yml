@@ -1,0 +1,272 @@
+Description of the information available from the collections
+This will provide information about the query types that are supported by the chosen collection Use content negotiation to request JSON
+---
+tags:
+  - Collection metadata
+parameters:
+  - name: collectionId
+    in: path
+    description: Identifier (id) of a specific collection
+    schema:
+      type: string
+      enum: ['safran-isba']
+    required: true
+    default: safran-isba
+
+responses:
+  200:
+    description: Metadata about the {collectionId} collection shared by this API
+    content:
+      application/json:
+        schema:
+          type: object
+        examples:
+          response:
+            value: {
+                    "id": "safran-isba",
+                    "title": "Safran-Isba, Données changement climatique - SIM quotidienne",
+                    "description": "Données quotidiennes du modèle de simulation des schémas de surface (Safran - Isba). Paramètres atmosphériques de surface et bilans des sols en points de grille issus de l'analyse de modèle simulant les flux d’eau et d’énergie à la surface terrestre.",
+                    "keywords": [
+                      "Wind Speed",
+                      "Air Temperature",
+                      "Precipitation",
+                      "Weather"
+                    ],
+                    "links": [
+                      {
+                        "href": "https://object.files.data.gouv.fr/meteofrance/data/synchro_ftp/REF_CC/SIM/doc_sim2_donneespubliques_221.pdf",
+                        "hreflang": "fr",
+                        "rel": "service-doc",
+                        "type": "application/pdf"
+                      },
+                      {
+                        "href": "https://meteo.data.gouv.fr/datasets/6569b27598256cc583c917a7",
+                        "hreflang": "fr",
+                        "rel": "data",
+                        "type": "text/html"
+                      },
+                      {
+                        "href": "https://www.etalab.gouv.fr/licence-ouverte-open-licence/",
+                        "hreflang": "fr",
+                        "rel": "license",
+                        "type": "text/html"
+                      }
+                    ],
+                    "extent": {
+                      "spatial": {
+                        "bbox": [
+                          [
+                            60000,
+                            1617000,
+                            1196000,
+                            2681000
+                          ]
+                        ],
+                        "crs": "IGNF:LAMBE"
+                      },
+                      "temporal": {
+                        "interval": [
+                          [
+                            "1958-08-01T00:00:00.000000000",
+                            "2024-01-08T00:00:00.000000000"
+                          ]
+                        ],
+                        "trs": "TIMECRS[\"DateTime\",TDATUM[\"Gregorian Calendar\"],CS[TemporalDateTime,1],AXIS[\"Time (T)\",future]]",
+                        "values": [
+                          "1958-08-01T00:00:00.000000000/2024-01-08T00:00:00.000000000"
+                        ]
+                      }
+                    },
+                    "crs": "IGNF:LAMBE",
+                    "parameter_names": [
+                      {
+                        "DRAINC_Q": {
+                          "description": "Drainage (cumul quotidien 06-06 UTC)",
+                          "measurementType": {
+                            "duration": "PT24H",
+                            "method": "sum"
+                          },
+                          "observedProperty": {
+                            "id": "https://fr.wikipedia.org/wiki/Lame_d%27eau",
+                            "label": "Lame d'eau"
+                          },
+                          "type": "Parameter",
+                          "unit": {
+                            "label": "millimetre",
+                            "symbol": {
+                              "type": "https://fr.wikipedia.org/wiki/Millim%C3%A8tre",
+                              "value": "mm"
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "ETP_Q": {
+                          "description": "Evapotranspiration potentielle (formule de Penman-Monteith)",
+                          "measurementType": {
+                            "duration": "PT24H",
+                            "method": "sum"
+                          },
+                          "observedProperty": {
+                            "id": "http://opendata.inrae.fr/thesaurusINRAE/c_241",
+                            "label": "Evapotranspiration potentielle"
+                          },
+                          "type": "Parameter",
+                          "unit": {
+                            "label": "millimetre",
+                            "symbol": {
+                              "type": "https://fr.wikipedia.org/wiki/Millim%C3%A8tre",
+                              "value": "mm"
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "FF_Q": {
+                          "description": "Vent (moyenne quotidienne)",
+                          "measurementType": {
+                            "duration": "PT24H",
+                            "method": "mean"
+                          },
+                          "observedProperty": {
+                            "id": "http://opendata.inrae.fr/thesaurusINRAE/c_11505",
+                            "label": "Vent"
+                          },
+                          "type": "Parameter",
+                          "unit": {
+                            "label": "mètre par seconde",
+                            "symbol": {
+                              "type": "https://fr.wikipedia.org/wiki/M%C3%A8tre_par_seconde",
+                              "value": "m/s"
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "PRELIQ_Q": {
+                          "description": "Précipitations liquides (cumul quotidien 06-06 UTC)",
+                          "measurementType": {
+                            "duration": "PT24H",
+                            "method": "sum"
+                          },
+                          "observedProperty": {
+                            "id": "http://opendata.inrae.fr/thesaurusINRAE/c_11627",
+                            "label": "Pluie"
+                          },
+                          "type": "Parameter",
+                          "unit": {
+                            "label": "millimetre",
+                            "symbol": {
+                              "type": "https://fr.wikipedia.org/wiki/Millim%C3%A8tre",
+                              "value": "mm"
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "PRENEI_Q": {
+                          "description": "Précipitations solide (cumul quotidien 06-06 UTC)",
+                          "measurementType": {
+                            "duration": "PT24H",
+                            "method": "sum"
+                          },
+                          "observedProperty": {
+                            "id": "http://opendata.inrae.fr/thesaurusINRAE/c_11627",
+                            "label": "Pluie"
+                          },
+                          "type": "Parameter",
+                          "unit": {
+                            "label": "millimetre",
+                            "symbol": {
+                              "type": "https://fr.wikipedia.org/wiki/Millim%C3%A8tre",
+                              "value": "mm"
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "SSI_Q": {
+                          "description": "Rayonnement atmosphérique (cumul quotidien)",
+                          "measurementType": {
+                            "duration": "PT24H",
+                            "method": "sum"
+                          },
+                          "observedProperty": {
+                            "id": "http://opendata.inrae.fr/thesaurusINRAE/c_14024",
+                            "label": "Rayonnement"
+                          },
+                          "type": "Parameter",
+                          "unit": {
+                            "label": "Joule par centimètre²",
+                            "symbol": {
+                              "type": "https://fr.wikipedia.org/wiki/Millim%C3%A8tre",
+                              "value": "J/cm²"
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "TINF_H_Q": {
+                          "description": "Température minimale des 24 températures horaires",
+                          "measurementType": {
+                            "duration": "PT24H",
+                            "method": "minimale"
+                          },
+                          "observedProperty": {
+                            "id": "http://opendata.inrae.fr/thesaurusINRAE/c_1243",
+                            "label": "Température de l'air"
+                          },
+                          "type": "Parameter",
+                          "unit": {
+                            "label": "degrée Celcius",
+                            "symbol": {
+                              "type": "https://fr.wikipedia.org/wiki/Degr%C3%A9_Celsius",
+                              "value": "°C"
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "TSUP_H_Q": {
+                          "description": "Température maximale des 24 températures horaires",
+                          "measurementType": {
+                            "duration": "PT24H",
+                            "method": "maximum"
+                          },
+                          "observedProperty": {
+                            "id": "http://opendata.inrae.fr/thesaurusINRAE/c_1243",
+                            "label": "Température de l'air"
+                          },
+                          "type": "Parameter",
+                          "unit": {
+                            "label": "degrée Celcius",
+                            "symbol": {
+                              "type": "https://fr.wikipedia.org/wiki/Degr%C3%A9_Celsius",
+                              "value": "°C"
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "T_Q": {
+                          "description": "Température (moyenne quotidienne)",
+                          "measurementType": {
+                            "duration": "PT24H",
+                            "method": "moyenne"
+                          },
+                          "observedProperty": {
+                            "id": "http://opendata.inrae.fr/thesaurusINRAE/c_1243",
+                            "label": "Température de l'air"
+                          },
+                          "type": "Parameter",
+                          "unit": {
+                            "label": "degrée Celcius",
+                            "symbol": {
+                              "type": "https://fr.wikipedia.org/wiki/Degr%C3%A9_Celsius",
+                              "value": "°C"
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }

@@ -1,0 +1,4 @@
+mise_en_zarr.py
+mise_en_zarr_dask.py
+.ipynb_checkpoints/
+config_api/config_en_cours_test.json

@@ -1,0 +1,201 @@
+Query end point for position queries of collection {collectionId}
+Query end point for position queries
+---
+tags:
+  - Collection data queries
+parameters:
+  - name: collectionId
+    in: path
+    description: Identifier (id) of a specific collection
+    schema:
+      type: string
+      enum: ['safran-isba']
+    required: true
+    default: safran-isba
+  - name: coords
+    in: query
+    description: location(s) to return data for, the coordinates are defined by a Well Known Text (wkt) string. to retrieve a single location :\ POINT(x y) i.e. POINT(0 51.48) for Greenwich, London
+    schema:
+      type: string
+    required: true
+    default: POINT(0 49)
+  - name: datetime
+    in: query
+    description: Either a date-time or an interval. Date and time expressions adhere to RFC 3339. Intervals may be bounded or half-bounded (double-dots at start or end). Examples:\date-time:\ "2018-02-12T23:20:50Z" * A bounded interval:\ "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z"
+    schema:
+      type: string
+    required: false
+    examples:
+      single:
+        summary: Simple date
+        value: "1960-01-01T00:00:00Z"
+      double:
+        summary: Intervalle
+        value: "1958-08-01T00:00:00.00Z/1958-08-11T00:00:00Z"
+  - name: parameter-name
+    in: query
+    description: comma delimited list of parameters to retrieve data for. Valid parameters are listed in the collections metadata
+    required: false
+    schema:
+      type: string
+    examples:
+      single:
+        summary: Single
+        value: FF_Q
+      double:
+        summary: List
+        value: T_Q,FF_Q
+  - name: crs
+    in: query
+    description: identifier (id) of the coordinate system to return data in list of valid crs identifiers for the chosen collection are defined in the metadata responses. If not supplied the coordinate reference system will default to WGS84.
+    required: false
+    schema:
+      type: string
+      enum: ['EPSG:4326','EPSG:2154','IGNF:LAMBE']
+    default: "EPSG:4326"
+  - name: f
+    in: query
+    description: format to return the data response in
+    required: false
+    schema:
+      type: string
+      enum: ['CSV','CoverageJSON','Netcdf4']
+    default: "CoverageJSON"
+responses:
+  200:
+    description: Data ranges required to construct valid queries for the choosen data collection
+    content:
+      application/json:
+        schema:
+          type: object
+        examples:
+          response:
+            value: {
+                    "type": "Coverage",
+                    "domain": {
+                      "type": "Domain",
+                      "domainType": "Point",
+                      "axes": {
+                        "x": {
+                          "value": -4.962154433566157
+                        },
+                        "y": {
+                          "value": 48.38205706656016
+                        },
+                        "t": {
+                          "values": [
+                            "1958-08-01T00-00-00Z",
+                            "1958-08-02T00-00-00Z",
+                            "1958-08-03T00-00-00Z",
+                            "1958-08-04T00-00-00Z",
+                            "1958-08-05T00-00-00Z",
+                            "1958-08-06T00-00-00Z",
+                            "1958-08-07T00-00-00Z",
+                            "1958-08-08T00-00-00Z",
+                            "1958-08-09T00-00-00Z",
+                            "1958-08-10T00-00-00Z",
+                            "1958-08-11T00-00-00Z"
+                          ]
+                        }
+                      },
+                      "referencing": [
+                        {
+                          "coordinates": [
+                            "x",
+                            "y"
+                          ],
+                          "system": {
+                            "type": "GeographicCRS",
+                            "id": "EPSG:4326"
+                          }
+                        },
+                        {
+                          "coordinates": "t",
+                          "system": {
+                            "type": "TemporalCRS",
+                            "calendar": "Gregorian"
+                          }
+                        }
+                      ]
+                    },
+                    "parameters": {
+                      "FF_Q": {
+                        "type": "Parameter",
+                        "description": "Vent (moyenne quotidienne)",
+                        "unit": {
+                          "label": "mètre par seconde",
+                          "symbol": {
+                            "type": "https://fr.wikipedia.org/wiki/M%C3%A8tre_par_seconde",
+                            "value": "m/s"
+                          }
+                        },
+                        "observedProperty": {
+                          "id": "http://opendata.inrae.fr/thesaurusINRAE/c_11505",
+                          "label": "Vent"
+                        }
+                      },
+                      "T_Q": {
+                        "type": "Parameter",
+                        "description": "Température (moyenne quotidienne)",
+                        "unit": {
+                          "label": "degrée Celcius",
+                          "symbol": {
+                            "type": "https://fr.wikipedia.org/wiki/Degr%C3%A9_Celsius",
+                            "value": "°C"
+                          }
+                        },
+                        "observedProperty": {
+                          "id": "http://opendata.inrae.fr/thesaurusINRAE/c_1243",
+                          "label": "Température de l'air"
+                        }
+                      }
+                    },
+                    "ranges": {
+                      "FF_Q": {
+                        "type": "NdArray",
+                        "dataType": "object",
+                        "axisNames": [
+                          "t"
+                        ],
+                        "shape": [
+                          11
+                        ],
+                        "values": [
+                          3.5,
+                          3.0999999046325684,
+                          3.9000000953674316,
+                          4.099999904632568,
+                          4.099999904632568,
+                          3.5999999046325684,
+                          5.599999904632568,
+                          5.599999904632568,
+                          2.700000047683716,
+                          4.300000190734863,
+                          5.199999809265137
+                        ]
+                      },
+                      "T_Q": {
+                        "type": "NdArray",
+                        "dataType": "object",
+                        "axisNames": [
+                          "t"
+                        ],
+                        "shape": [
+                          11
+                        ],
+                        "values": [
+                          15.300000190734863,
+                          14,
+                          15,
+                          16.399999618530273,
+                          16.799999237060547,
+                          15.100000381469727,
+                          16.299999237060547,
+                          17.799999237060547,
+                          18.799999237060547,
+                          17.5,
+                          16.600000381469727
+                        ]
+                      }
+                    }
+                  }
