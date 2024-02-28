@@ -100,37 +100,53 @@ def collection(collectionId):
 @app.route("/edr/collections/<string:collectionId>/cube", methods=["GET"])
 @swag_from("documentation/cube.yml")
 def cube(collectionId):
-    arg = request.args.to_dict()
+    try:
+        arg = request.args.to_dict()
 
-    if "bbox" not in arg:
-        return jsonify({"error": "parametre bbox obligatoire"})
-    arg["collection"] = collectionId
-    print(arg)
-    output = instance.cube_rqt(arg)
-    print("rqt cube finish prepapre fichier")
-    if isinstance(output, dict):
-        return jsonify(output)
-    if arg["f"] == "CSV":
-        return send_file(output, download_name="extract.csv", as_attachment=True)
+        if "bbox" not in arg:
+            return jsonify({"error": "parametre bbox obligatoire"})
+        arg["collection"] = collectionId
+        print(arg)
+        output = instance.cube_rqt(arg)
+        print("rqt cube finish prepapre fichier")
+        if isinstance(output, dict):
+            return jsonify(output)
+        if arg["f"] == "CSV":
+            return send_file(output, download_name="extract.csv", as_attachment=True)
 
-    return send_file(output, download_name="cube.nc", as_attachment=True)
+        return send_file(output, download_name="cube.nc", as_attachment=True)
+    except:
+        return jsonify(
+            {
+                "response": "erreur de syntaxe",
+                "Plus d'information sur la syntaxe Cube": "https://docs.ogc.org/is/19-086r6/19-086r6.html#_fe30ac95-7038-4dd1-902d-f4fcd2f31c8d",
+            }
+        )
 
 
 @app.route("/edr/collections/<string:collectionId>/position", methods=["GET"])
 @swag_from("documentation/positions.yml")
 def position(collectionId):
-    arg = request.args.to_dict()
-    if "coords" not in arg:
-        return jsonify({"error": "parametre coords obligatoire"})
-    arg["collection"] = collectionId
-    print(arg)
-    output = instance.position_rqt(arg)
-    if isinstance(output, dict):
-        return jsonify(output)
-    if arg["f"] == "CSV":
-        return send_file(output, download_name="extract.csv", as_attachment=True)
+    try:
+        arg = request.args.to_dict()
+        if "coords" not in arg:
+            return jsonify({"error": "parametre coords obligatoire"})
+        arg["collection"] = collectionId
+        print(arg)
+        output = instance.position_rqt(arg)
+        if isinstance(output, dict):
+            return jsonify(output)
+        if arg["f"] == "CSV":
+            return send_file(output, download_name="extract.csv", as_attachment=True)
 
-    return send_file(output, download_name="position.nc", as_attachment=True)
+        return send_file(output, download_name="position.nc", as_attachment=True)
+    except:
+        return jsonify(
+            {
+                "response": "erreur de syntaxe",
+                "Plus d'information sur la syntaxe Position": "https://docs.ogc.org/is/19-086r6/19-086r6.html#_bbda46d4-04c5-426b-bea3-230d592fe1c2",
+            }
+        )
 
 
 @app.route("/edr/collections/<string:collectionId>/area", methods=["GET"])

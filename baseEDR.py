@@ -372,26 +372,35 @@ class zarr_query:
         encoder = {}
         # encoding={'air': {'_FillValue': -999.0},'x': {'_FillValue': -999.0},'y': {'_FillValue': -999.0}}
         for i in self.ds:
+            if "categoryEncoding" in self.ds[i].attrs:
+                self.ds[i].attrs["observedProperty"] = json.dumps(
+                    self.ds[i].attrs["observedProperty"]
+                )
+                self.ds[i].attrs["categoryEncoding"] = json.dumps(
+                    self.ds[i].attrs["categoryEncoding"]
+                )
+            else:
+                self.ds[i].attrs["observedProperty"] = self.ds[i].attrs[
+                    "observedProperty"
+                ]["id"]
+
             encoder[i] = {"_FillValue": -999.0}
-            self.ds[i].attrs["observedProperty"] = self.ds[i].attrs["observedProperty"][
-                "id"
-            ]
             self.ds[i].attrs["unit label"] = self.ds[i].attrs["unit"]["label"]
             self.ds[i].attrs["unit"] = self.ds[i].attrs["unit"]["symbol"]["value"]
             del self.ds[i].attrs["measurementType"]
-        # si netcdf 4 ou 5 peut gérer dict ou list
-        # self.ds.FF_Q.attrs['measurementType']=[(k,v) for k,v in self.ds.FF_Q.attrs['measurementType'].items()]
-        # self.ds.FF_Q.attrs['observedProperty']=[(k,v) for k,v in self.ds.FF_Q.attrs['observedProperty'].items()]
-        # self.ds.FF_Q.attrs['unit']=[(k,v) for k,v in self.ds.FF_Q.attrs['unit'].items()]
+            # si netcdf 4 ou 5 peut gérer dict ou list
+            # self.ds.FF_Q.attrs['measurementType']=[(k,v) for k,v in self.ds.FF_Q.attrs['measurementType'].items()]
+            # self.ds.FF_Q.attrs['observedProperty']=[(k,v) for k,v in self.ds.FF_Q.attrs['observedProperty'].items()]
+            # self.ds.FF_Q.attrs['unit']=[(k,v) for k,v in self.ds.FF_Q.attrs['unit'].items()]
 
-        encoder["x"] = {"_FillValue": -999.0}
-        encoder["y"] = {"_FillValue": -999.0}
-        del self.ds.attrs["extent"]
-        del self.ds.attrs["keywords"]
+            encoder["x"] = {"_FillValue": -999.0}
+            encoder["y"] = {"_FillValue": -999.0}
+            del self.ds.attrs["extent"]
+            del self.ds.attrs["keywords"]
 
-        for i in self.ds.attrs["links"]:
-            self.ds.attrs["rel"] = i["href"]
-        del self.ds.attrs["links"]
+            for i in self.ds.attrs["links"]:
+                self.ds.attrs["rel"] = i["href"]
+            del self.ds.attrs["links"]
 
         netcdf_out = self.ds.to_netcdf(engine="scipy", encoding=encoder)
 
@@ -568,7 +577,7 @@ class zarr_query:
             for i in range(len(x)):
                 poly.append([x[i], y[i]])
 
-            geometries = geometries = [{"type": "Polygon", "coordinates": [poly]}]
+            geometries = [{"type": "Polygon", "coordinates": [poly]}]
             self.ds = self.ds.rio.clip(geometries, self.ds.crs)
         except Exception as e:
             print(str(e))

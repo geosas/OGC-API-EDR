@@ -300,15 +300,307 @@
         "crs": "EPSG:2154",
         "parameter_names": [
             {
-                "code_culture": {
+                "code_groupe": {
+                    "categoryEncoding": {
+                        "http://opendata.inrae.fr/thesaurusINRAE/c_10560e6f": 19,
+                        "http://opendata.inrae.fr/thesaurusINRAE/c_1233": 15,
+                        "http://opendata.inrae.fr/thesaurusINRAE/c_2269": 5,
+                        "http://opendata.inrae.fr/thesaurusINRAE/c_23133": 11,
+                        "http://opendata.inrae.fr/thesaurusINRAE/c_23354": 23,
+                        "http://opendata.inrae.fr/thesaurusINRAE/c_24452": 1,
+                        "http://opendata.inrae.fr/thesaurusINRAE/c_2508": 20,
+                        "http://opendata.inrae.fr/thesaurusINRAE/c_25176": 21,
+                        "http://opendata.inrae.fr/thesaurusINRAE/c_25193": 2,
+                        "http://opendata.inrae.fr/thesaurusINRAE/c_25624": 6,
+                        "http://opendata.inrae.fr/thesaurusINRAE/c_2638": 16,
+                        "http://opendata.inrae.fr/thesaurusINRAE/c_294": 17,
+                        "http://opendata.inrae.fr/thesaurusINRAE/c_3084": 4,
+                        "http://opendata.inrae.fr/thesaurusINRAE/c_3369": 28,
+                        "http://opendata.inrae.fr/thesaurusINRAE/c_3427 ": 7,
+                        "http://opendata.inrae.fr/thesaurusINRAE/c_3495": 14,
+                        "http://opendata.inrae.fr/thesaurusINRAE/c_3603": 3,
+                        "http://opendata.inrae.fr/thesaurusINRAE/c_3826": 18,
+                        "http://opendata.inrae.fr/thesaurusINRAE/c_4029": 22,
+                        "http://opendata.inrae.fr/thesaurusINRAE/c_5627:": 24,
+                        "http://opendata.inrae.fr/thesaurusINRAE/c_7408": 25,
+                        "http://opendata.inrae.fr/thesaurusINRAE/c_8499": 8,
+                        "http://opendata.inrae.fr/thesaurusINRAE/c_94d320ff": 26,
+                        "http://opendata.inrae.fr/thesaurusINRAE/c_9965": 9
+                    },
                     "description": "Code du groupe de la culture principale de la parcelle",
                     "measurementType": {
                         "duration": "PT1Y",
                         "method": "mode"
                     },
                     "observedProperty": {
-                        "id": "https://geoservices.ign.fr/sites/default/files/2023-11/DC_DL_RPG_2-1_0.pdf",
-                        "label": "CODE_GROUP"
+                        "categories": [
+                            {
+                                "description": {
+                                    "fr": "Groupe de culture du blé tendre du Registre Parcellaire Graphique"
+                                },
+                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_24452",
+                                "label": {
+                                    "en": "Soft wheat",
+                                    "fr": "Blé tendre"
+                                },
+                                "preferredColor": "#ffff90"
+                            },
+                            {
+                                "description": {
+                                    "fr": "Groupe de culture du maïs grain et ensilage du Registre Parcellaire Graphique"
+                                },
+                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_25193",
+                                "label": {
+                                    "en": "Corn",
+                                    "fr": "Maïs grain et ensilage"
+                                },
+                                "preferredColor": "#00ff00"
+                            },
+                            {
+                                "description": {
+                                    "fr": "Groupe de culture de l'orge du Registre Parcellaire Graphique"
+                                },
+                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_3603",
+                                "label": {
+                                    "en": "Barley",
+                                    "fr": "Orge"
+                                },
+                                "preferredColor": "#f0ff70"
+                            },
+                            {
+                                "description": {
+                                    "fr": "Groupe de culture des autres céréales du Registre Parcellaire Graphique"
+                                },
+                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_3084",
+                                "label": {
+                                    "en": "Other cereal",
+                                    "fr": "Autres céréales"
+                                },
+                                "preferredColor": "#daeb00"
+                            },
+                            {
+                                "description": {
+                                    "fr": "Groupe de culture du colza du Registre Parcellaire Graphique"
+                                },
+                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_2269",
+                                "label": {
+                                    "en": "Rapeseed",
+                                    "fr": "Colza"
+                                },
+                                "preferredColor": "#ffecb0"
+                            },
+                            {
+                                "description": {
+                                    "fr": "Groupe de culture du tournesol du Registre Parcellaire Graphique"
+                                },
+                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_25624",
+                                "label": {
+                                    "en": "Sunflower",
+                                    "fr": "Tournesol"
+                                },
+                                "preferredColor": "#ffff00"
+                            },
+                            {
+                                "description": {
+                                    "fr": "Groupe de culture des autres oléagineux du Registre Parcellaire Graphique"
+                                },
+                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_3427",
+                                "label": {
+                                    "en": "Other oilseeds",
+                                    "fr": "Autres oléagineux"
+                                },
+                                "preferredColor": "#ffce00"
+                            },
+                            {
+                                "description": {
+                                    "fr": "Groupe de culture des protéagineux du Registre Parcellaire Graphique"
+                                },
+                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_8499",
+                                "label": {
+                                    "en": "Protein",
+                                    "fr": "Protéagineux"
+                                },
+                                "preferredColor": "#f0b400"
+                            },
+                            {
+                                "description": {
+                                    "fr": "Groupe de culture des plantes à fibre du Registre Parcellaire Graphique"
+                                },
+                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_9965",
+                                "label": {
+                                    "en": "Fiber plants",
+                                    "fr": "Plantes à fibres"
+                                },
+                                "preferredColor": "#c09000"
+                            },
+                            {
+                                "description": {
+                                    "fr": "Groupe de culture des autres oléagineux du Registre Parcellaire Graphique"
+                                },
+                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_23133",
+                                "label": {
+                                    "en": "Gel (frozen surfaces without production)",
+                                    "fr": "gel (surfaces gelées sans production)"
+                                },
+                                "preferredColor": "#f0f0f0"
+                            },
+                            {
+                                "description": {
+                                    "fr": "Groupe de culture du riz du Registre Parcellaire Graphique"
+                                },
+                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_3495",
+                                "label": {
+                                    "en": "Rice",
+                                    "fr": "Riz"
+                                },
+                                "preferredColor": "#8fb5fe"
+                            },
+                            {
+                                "description": {
+                                    "fr": "Groupe de culture des légumineuse à graine du Registre Parcellaire Graphique"
+                                },
+                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_1233",
+                                "label": {
+                                    "en": "Grain legumes",
+                                    "fr": "Légumineuses à grain"
+                                },
+                                "preferredColor": "#ffa080"
+                            },
+                            {
+                                "description": {
+                                    "fr": "Groupe de culture du fourrage du Registre Parcellaire Graphique"
+                                },
+                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_23133",
+                                "label": {
+                                    "en": "Fodder",
+                                    "fr": "Fourrage"
+                                },
+                                "preferredColor": "#9fc75d"
+                            },
+                            {
+                                "description": {
+                                    "fr": "Groupe de culture des estives et landes du Registre Parcellaire Graphique"
+                                },
+                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_294",
+                                "label": {
+                                    "en": "Mountain pastures and moors",
+                                    "fr": "Estives et landes"
+                                },
+                                "preferredColor": "#b5e66b"
+                            },
+                            {
+                                "description": {
+                                    "fr": "Groupe de culture des prairies permanentes du Registre Parcellaire Graphique"
+                                },
+                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_3826",
+                                "label": {
+                                    "en": "Permanent grassland",
+                                    "fr": "Prairies permanentes"
+                                },
+                                "preferredColor": "#c0ff60"
+                            },
+                            {
+                                "description": {
+                                    "fr": "Groupe de culture des prairies temporaires du Registre Parcellaire Graphique"
+                                },
+                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_10560e6f",
+                                "label": {
+                                    "en": "Temporary grassland",
+                                    "fr": "Prairies temporaires"
+                                },
+                                "preferredColor": "#e0ffb0"
+                            },
+                            {
+                                "description": {
+                                    "fr": "Groupe de culture des vergers du Registre Parcellaire Graphique"
+                                },
+                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_2508",
+                                "label": {
+                                    "en": "Orchards",
+                                    "fr": "Vergers"
+                                },
+                                "preferredColor": "#ff0000"
+                            },
+                            {
+                                "description": {
+                                    "fr": "Groupe de culture des vignes du Registre Parcellaire Graphique"
+                                },
+                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_25176",
+                                "label": {
+                                    "en": "Vineyards",
+                                    "fr": "Vignes"
+                                },
+                                "preferredColor": "#de01e4"
+                            },
+                            {
+                                "description": {
+                                    "fr": "Groupe de culture des fruits à coque du Registre Parcellaire Graphique"
+                                },
+                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_4029",
+                                "label": {
+                                    "en": "Nuts",
+                                    "fr": "Fruits à coque"
+                                },
+                                "preferredColor": "#008000"
+                            },
+                            {
+                                "description": {
+                                    "fr": "Groupe de culture des oliviers du Registre Parcellaire Graphique"
+                                },
+                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_23354",
+                                "label": {
+                                    "en": "Olive trees",
+                                    "fr": "Oliviers"
+                                },
+                                "preferredColor": "#a2a200"
+                            },
+                            {
+                                "description": {
+                                    "fr": "Groupe de culture des autres cultures industrielles du Registre Parcellaire Graphique"
+                                },
+                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_5627",
+                                "label": {
+                                    "en": "Other industrial crops",
+                                    "fr": "Autres cultures industrielles"
+                                },
+                                "preferredColor": "#008080"
+                            },
+                            {
+                                "description": {
+                                    "fr": "Groupe de culture des légumes ou fleurs du Registre Parcellaire Graphique"
+                                },
+                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_7408",
+                                "label": {
+                                    "en": "Vegetables or flowers",
+                                    "fr": "Légumes ou fleurs"
+                                },
+                                "preferredColor": "#ffa0d0"
+                            },
+                            {
+                                "description": {
+                                    "fr": "Groupe de culture de la canne à sucre du Registre Parcellaire Graphique"
+                                },
+                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_94d320ff",
+                                "label": {
+                                    "en": "Sugar cane",
+                                    "fr": "Canne à sucre"
+                                },
+                                "preferredColor": "#0000ff"
+                            },
+                            {
+                                "description": {
+                                    "fr": "Groupe de culture divers du Registre Parcellaire Graphique"
+                                },
+                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_3369",
+                                "label": {
+                                    "en": "Other",
+                                    "fr": "Divers"
+                                },
+                                "preferredColor": "#00b058"
+                            }
+                        ],
+                        "id": "https://collections.eurodatacube.com/france-metropolitan-gsaa/readme.html ",
+                        "label": "code_groupe"
                     },
                     "type": "Parameter",
                     "unit": {
