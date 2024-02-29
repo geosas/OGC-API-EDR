@@ -639,30 +639,33 @@ class edr_base:
 
     def open_zarr_set_config(self):
         for i in self.configJson:
-            # open zarr et test si les metadata obligatoire sont présente
-            print(i)
-            ds = xr.open_zarr(self.configJson[i]["path"])
-            self.configJson[i]["id"] = i
-            self.configJson[i]["title"] = ds.attrs["title"]
-            self.configJson[i]["description"] = ds.attrs["description"]
-            self.configJson[i]["keywords"] = ds.attrs["keywords"]
-            self.configJson[i]["links"] = ds.attrs["links"]
-            self.configJson[i]["links"].append({
-                "href":f"{self.apiUrl}collections/{i}",
-                "rel":"service",
-                "type":"application/json"
-            })
-            self.configJson[i]["extent"] = ds.attrs["extent"]
-            self.configJson[i]["crs"] = ds.attrs["crs"]
+            try:
+                # open zarr et test si les metadata obligatoire sont présente
+                print(i)
+                ds = xr.open_zarr(self.configJson[i]["path"])
+                self.configJson[i]["id"] = i
+                self.configJson[i]["title"] = ds.attrs["title"]
+                self.configJson[i]["description"] = ds.attrs["description"]
+                self.configJson[i]["keywords"] = ds.attrs["keywords"]
+                self.configJson[i]["links"] = ds.attrs["links"]
+                self.configJson[i]["links"].append({
+                    "href":f"{self.apiUrl}collections/{i}",
+                    "rel":"service",
+                    "type":"application/json"
+                })
+                self.configJson[i]["extent"] = ds.attrs["extent"]
+                self.configJson[i]["crs"] = ds.attrs["crs"]
 
-            self.configJson[i]["parameter_names"] = []
-            for z in ds:
-                dico_variable = {z: {}}
-                for attr in ds[z].attrs:
-                    dico_variable[z][attr] = ds[z].attrs[attr]
+                self.configJson[i]["parameter_names"] = []
+                for z in ds:
+                    dico_variable = {z: {}}
+                    for attr in ds[z].attrs:
+                        dico_variable[z][attr] = ds[z].attrs[attr]
 
-                self.configJson[i]["parameter_names"].append(dico_variable)
-                # if no units error, écrit rapport et saute cette variable
+                    self.configJson[i]["parameter_names"].append(dico_variable)
+                    # if no units error, écrit rapport et saute cette variable
+            except:
+                print(i, 'error in this zarr')
         print("write config")
         with open(
             os.path.dirname(os.path.abspath(__file__))
