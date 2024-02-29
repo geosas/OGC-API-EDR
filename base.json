@@ -30,7 +30,7 @@
       "title": "the API definition"
     },
     {
-      "href": "https://example.org/conformance",
+      "href": "https://docs.ogc.org/is/19-086r6/19-086r6.html",
       "rel": "conformance",
       "type": "application/json",
       "title": "OGC conformance classes implemented by this API"

@@ -28,6 +28,11 @@
                 "hreflang": "fr",
                 "rel": "license",
                 "type": "text/html"
+            },
+            {
+                "href": "https://api.geosas.fr/edr/collections/safran-isba",
+                "rel": "service",
+                "type": "application/json"
             }
         ],
         "extent": {
@@ -270,6 +275,11 @@
                 "hreflang": "fr",
                 "rel": "service-doc",
                 "type": "text/csv"
+            },
+            {
+                "href": "https://api.geosas.fr/edr/collections/RPG-Raster",
+                "rel": "service",
+                "type": "application/json"
             }
         ],
         "extent": {

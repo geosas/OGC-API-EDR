@@ -633,8 +633,9 @@ class zarr_query:
 
 
 class edr_base:
-    def __init__(self, configJson):
+    def __init__(self, configJson, apiUrl):
         self.configJson = configJson
+        self.apiUrl=apiUrl
 
     def open_zarr_set_config(self):
         for i in self.configJson:
@@ -646,6 +647,11 @@ class edr_base:
             self.configJson[i]["description"] = ds.attrs["description"]
             self.configJson[i]["keywords"] = ds.attrs["keywords"]
             self.configJson[i]["links"] = ds.attrs["links"]
+            self.configJson[i]["links"].append({
+                "href":f"{self.apiUrl}collections/{i}",
+                "rel":"service",
+                "type":"application/json"
+            })
             self.configJson[i]["extent"] = ds.attrs["extent"]
             self.configJson[i]["crs"] = ds.attrs["crs"]
 

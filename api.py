@@ -74,17 +74,8 @@ SWAGGER_CONFIG = {
 
 swagger = Swagger(app, template=SWAGGER_TEMPLATE, config=SWAGGER_CONFIG, merge=True)
 
-instance = edr_base(data_src)
+instance = edr_base(data_src, api_url)
 instance.open_zarr_set_config()
-for i in instance.configJson.keys():
-    landing_page["links"].append(
-           {
-      "href":f"{api_url}collections/{instance.configJson[i]['id']}",
-      "rel":"service",
-      "type":"application/json",
-      "title":instance.configJson[i]['title']
-    }
-    )
 
 
 @app.route("/edr/", methods=["GET"])
