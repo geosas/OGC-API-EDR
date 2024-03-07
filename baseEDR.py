@@ -12,6 +12,7 @@ import pandas as pd
 import pyproj
 import rioxarray
 import shapely.wkt
+from shapely.ops import transform
 
 # import tempfile
 import xarray as xr
@@ -161,7 +162,7 @@ class zarr_query:
             lamb2e_to_latlon = pyproj.Transformer.from_crs(
                 crs_rqt, crs_data, always_xy=True
             )
-            geom = lamb2e_to_latlon.transform(geom)
+            geom = transform(lamb2e_to_latlon.transform, geom)
             return geom
 
     def aggregation_mtd(self, data, mtd):
@@ -437,7 +438,11 @@ class zarr_query:
         for i in self.ds.dims:
             if self.ds.sizes[i] == 0:
                 print(i, "no data")
-                return {"response": "no data for " + i}
+                return {
+                    "response": "no data for " + i,
+                    "informations": "l'api est encore mode béta, si vous pensez qu'il y a un bug ou que vous rencontrez des difficultés, ouvrez une issues sur notre github",
+                    "github": "https://github.com/geosas/OGC-API-EDR",
+                }
 
         print("check format")
         if "f" in self.dico_args:
@@ -501,12 +506,20 @@ class zarr_query:
                 x=dico_query["x"], y=dico_query["y"], method="nearest"
             )
         except:
-            return {"response": "no data here"}  # à changer par csv vide
+            return {
+                "response": "no data here",
+                "informations": "l'api est encore mode béta, si vous pensez qu'il y a un bug ou que vous rencontrez des difficultés, ouvrez une issues sur notre github",
+                "github": "https://github.com/geosas/OGC-API-EDR",
+            }  # à changer par csv vide
 
         for i in self.ds.dims:
             if self.ds.sizes[i] == 0:
                 print(i, "no data")
-                return {"response": "no data here for " + i}
+                return {
+                    "response": "no data here for " + i,
+                    "informations": "l'api est encore mode béta, si vous pensez qu'il y a un bug ou que vous rencontrez des difficultés, ouvrez une issues sur notre github",
+                    "github": "https://github.com/geosas/OGC-API-EDR",
+                }
 
         print("check crs")
         if "crs" in self.dico_args:
@@ -581,12 +594,20 @@ class zarr_query:
             self.ds = self.ds.rio.clip(geometries, self.ds.crs)
         except Exception as e:
             print(str(e))
-            return {"response": "no data here"}  # à changer par csv vide
+            return {
+                "response": "no data here",
+                "informations": "l'api est encore mode béta, si vous pensez qu'il y a un bug ou que vous rencontrez des difficultés, ouvrez une issues sur notre github",
+                "github": "https://github.com/geosas/OGC-API-EDR",
+            }  # à changer par csv vide
 
         for i in self.ds.dims:
             if self.ds.sizes[i] == 0:
                 print(i, "no data")
-                return {"response": "no data here for " + i}
+                return {
+                    "response": "no data here for " + i,
+                    "informations": "l'api est encore mode béta, si vous pensez qu'il y a un bug ou que vous rencontrez des difficultés, ouvrez une issues sur notre github",
+                    "github": "https://github.com/geosas/OGC-API-EDR",
+                }
 
         print("check crs")
         if "crs" in self.dico_args:
@@ -635,7 +656,7 @@ class zarr_query:
 class edr_base:
     def __init__(self, configJson, apiUrl):
         self.configJson = configJson
-        self.apiUrl=apiUrl
+        self.apiUrl = apiUrl
 
     def open_zarr_set_config(self):
         for i in self.configJson:
@@ -648,11 +669,13 @@ class edr_base:
                 self.configJson[i]["description"] = ds.attrs["description"]
                 self.configJson[i]["keywords"] = ds.attrs["keywords"]
                 self.configJson[i]["links"] = ds.attrs["links"]
-                self.configJson[i]["links"].append({
-                    "href":f"{self.apiUrl}collections/{i}",
-                    "rel":"service",
-                    "type":"application/json"
-                })
+                self.configJson[i]["links"].append(
+                    {
+                        "href": f"{self.apiUrl}collections/{i}",
+                        "rel": "service",
+                        "type": "application/json",
+                    }
+                )
                 self.configJson[i]["extent"] = ds.attrs["extent"]
                 self.configJson[i]["crs"] = ds.attrs["crs"]
 
@@ -665,7 +688,7 @@ class edr_base:
                     self.configJson[i]["parameter_names"].append(dico_variable)
                     # if no units error, écrit rapport et saute cette variable
             except:
-                print(i, 'error in this zarr')
+                print(i, "error in this zarr")
         print("write config")
         with open(
             os.path.dirname(os.path.abspath(__file__))

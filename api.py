@@ -26,7 +26,7 @@ with open(
 ) as src:
     data_src = json.load(src)
 
-api_url="https://api.geosas.fr/edr/"
+api_url = "https://api.geosas.fr/edr/"
 
 SWAGGER_TEMPLATE = {
     "tags": [
@@ -120,7 +120,9 @@ def cube(collectionId):
         return jsonify(
             {
                 "response": "erreur de syntaxe",
-                "Plus d'information sur la syntaxe Cube": "https://docs.ogc.org/is/19-086r6/19-086r6.html#_fe30ac95-7038-4dd1-902d-f4fcd2f31c8d",
+                "Plus d'information sur la syntaxe Position": "https://docs.ogc.org/is/19-086r6/19-086r6.html#_bbda46d4-04c5-426b-bea3-230d592fe1c2",
+                "informations": "l'api est encore mode béta, si vous pensez qu'il y a un bug ou que vous rencontrez des difficultés, ouvrez une issues sur notre github",
+                "github": "https://github.com/geosas/OGC-API-EDR",
             }
         )
 
@@ -146,6 +148,8 @@ def position(collectionId):
             {
                 "response": "erreur de syntaxe",
                 "Plus d'information sur la syntaxe Position": "https://docs.ogc.org/is/19-086r6/19-086r6.html#_bbda46d4-04c5-426b-bea3-230d592fe1c2",
+                "informations": "l'api est encore mode béta, si vous pensez qu'il y a un bug ou que vous rencontrez des difficultés, ouvrez une issues sur notre github",
+                "github": "https://github.com/geosas/OGC-API-EDR",
             }
         )
 
@@ -153,18 +157,29 @@ def position(collectionId):
 @app.route("/edr/collections/<string:collectionId>/area", methods=["GET"])
 @swag_from("documentation/area.yml")
 def area(collectionId):
-    arg = request.args.to_dict()
-    if "coords" not in arg:
-        return jsonify({"error": "parametre coords obligatoire"})
-    arg["collection"] = collectionId
-    print(arg)
-    output = instance.area_rqt(arg)
-    if isinstance(output, dict):
-        return jsonify(output)
-    if arg["f"] == "CSV":
-        return send_file(output, download_name="extract.csv", as_attachment=True)
+    try:
+        arg = request.args.to_dict()
+        if "coords" not in arg:
+            return jsonify({"error": "parametre coords obligatoire"})
+        arg["collection"] = collectionId
+        print(arg)
+        output = instance.area_rqt(arg)
+        if isinstance(output, dict):
+            return jsonify(output)
+        if arg["f"] == "CSV":
+            return send_file(output, download_name="extract.csv", as_attachment=True)
 
-    return send_file(output, download_name="area.nc", as_attachment=True)
+        return send_file(output, download_name="area.nc", as_attachment=True)
+
+    except:
+        return jsonify(
+            {
+                "response": "erreur de syntaxe",
+                "Plus d'information sur la syntaxe Position": "https://docs.ogc.org/is/19-086r6/19-086r6.html#_bbda46d4-04c5-426b-bea3-230d592fe1c2",
+                "informations": "l'api est encore mode béta, si vous pensez qu'il y a un bug ou que vous rencontrez des difficultés, ouvrez une issues sur notre github",
+                "github": "https://github.com/geosas/OGC-API-EDR",
+            }
+        )
 
 
 @app.route("/edr/test_api/", methods=["GET"])

@@ -1,6 +1,6 @@
 {
     "safran-isba": {
-        "path": "/data2/meteo/safran/quotidien/SAFRAN_1958-2024_10_param.zarr",
+        "path": "/data2/meteo/safran/quotidien/SAFRAN_1958-2024_11_param_v1.zarr",
         "id": "safran-isba",
         "title": "Safran-Isba, Données changement climatique - SIM quotidienne",
         "description": "Données quotidiennes du modèle de simulation des schémas de surface (Safran - Isba). Paramètres atmosphériques de surface et bilans des sols en points de grille issus de l'analyse de modèle simulant les flux d’eau et d’énergie à la surface terrestre.",
@@ -51,12 +51,12 @@
                 "interval": [
                     [
                         "1958-08-01T00:00:00.000000000",
-                        "2024-02-04T00:00:00.000000000"
+                        "2024-03-03T00:00:00.000000000"
                     ]
                 ],
                 "trs": "TIMECRS[\"DateTime\",TDATUM[\"Gregorian Calendar\"],CS[TemporalDateTime,1],AXIS[\"Time (T)\",future]]",
                 "values": [
-                    "1958-08-01T00:00:00.000000000/2024-02-04T00:00:00.000000000"
+                    "1958-08-01T00:00:00.000000000/2024-03-03T00:00:00.000000000"
                 ]
             }
         },
@@ -184,6 +184,27 @@
                         "symbol": {
                             "type": "https://fr.wikipedia.org/wiki/Millim%C3%A8tre",
                             "value": "J/cm²"
+                        }
+                    }
+                }
+            },
+            {
+                "SWI_Q": {
+                    "description": "Indice d'humidité des sols (moyenne quotidienne 06-06 UTC)",
+                    "measurementType": {
+                        "duration": "PT24H",
+                        "method": "moyenne"
+                    },
+                    "observedProperty": {
+                        "id": "Soil moisture",
+                        "label": "Humidité des sols "
+                    },
+                    "type": "Parameter",
+                    "unit": {
+                        "label": "Pourcentage",
+                        "symbol": {
+                            "type": "https://fr.wikipedia.org/wiki/Pourcentage",
+                            "value": "%"
                         }
                     }
                 }
