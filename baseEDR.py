@@ -371,6 +371,7 @@ class zarr_query:
 
     def netcdfGenerator(self):
         encoder = {}
+
         # encoding={'air': {'_FillValue': -999.0},'x': {'_FillValue': -999.0},'y': {'_FillValue': -999.0}}
         for i in self.ds:
             if "categoryEncoding" in self.ds[i].attrs:
@@ -396,12 +397,13 @@ class zarr_query:
 
             encoder["x"] = {"_FillValue": -999.0}
             encoder["y"] = {"_FillValue": -999.0}
-            del self.ds.attrs["extent"]
-            del self.ds.attrs["keywords"]
 
-            for i in self.ds.attrs["links"]:
-                self.ds.attrs["rel"] = i["href"]
-            del self.ds.attrs["links"]
+        del self.ds.attrs["extent"]
+        del self.ds.attrs["keywords"]
+
+        for i in self.ds.attrs["links"]:
+            self.ds.attrs["rel"] = i["href"]
+        del self.ds.attrs["links"]
 
         netcdf_out = self.ds.to_netcdf(engine="scipy", encoding=encoder)
 
@@ -440,7 +442,7 @@ class zarr_query:
                 print(i, "no data")
                 return {
                     "response": "no data for " + i,
-                    "informations": "l'api est encore mode béta, si vous pensez qu'il y a un bug ou que vous rencontrez des difficultés, ouvrez une issues sur notre github",
+                    "informations": "l'api est encore mode béta, si vous pensez qu'il y a un bug ou que vous rencontrez des difficultés, ouvrez une issue sur notre github",
                     "github": "https://github.com/geosas/OGC-API-EDR",
                 }
 
@@ -508,7 +510,7 @@ class zarr_query:
         except:
             return {
                 "response": "no data here",
-                "informations": "l'api est encore mode béta, si vous pensez qu'il y a un bug ou que vous rencontrez des difficultés, ouvrez une issues sur notre github",
+                "informations": "l'api est encore mode béta, si vous pensez qu'il y a un bug ou que vous rencontrez des difficultés, ouvrez une issue sur notre github",
                 "github": "https://github.com/geosas/OGC-API-EDR",
             }  # à changer par csv vide
 
@@ -517,7 +519,7 @@ class zarr_query:
                 print(i, "no data")
                 return {
                     "response": "no data here for " + i,
-                    "informations": "l'api est encore mode béta, si vous pensez qu'il y a un bug ou que vous rencontrez des difficultés, ouvrez une issues sur notre github",
+                    "informations": "l'api est encore mode béta, si vous pensez qu'il y a un bug ou que vous rencontrez des difficultés, ouvrez une issue sur notre github",
                     "github": "https://github.com/geosas/OGC-API-EDR",
                 }
 
@@ -596,7 +598,7 @@ class zarr_query:
             print(str(e))
             return {
                 "response": "no data here",
-                "informations": "l'api est encore mode béta, si vous pensez qu'il y a un bug ou que vous rencontrez des difficultés, ouvrez une issues sur notre github",
+                "informations": "l'api est encore mode béta, si vous pensez qu'il y a un bug ou que vous rencontrez des difficultés, ouvrez une issue sur notre github",
                 "github": "https://github.com/geosas/OGC-API-EDR",
             }  # à changer par csv vide
 
@@ -605,7 +607,7 @@ class zarr_query:
                 print(i, "no data")
                 return {
                     "response": "no data here for " + i,
-                    "informations": "l'api est encore mode béta, si vous pensez qu'il y a un bug ou que vous rencontrez des difficultés, ouvrez une issues sur notre github",
+                    "informations": "l'api est encore mode béta, si vous pensez qu'il y a un bug ou que vous rencontrez des difficultés, ouvrez une issue sur notre github",
                     "github": "https://github.com/geosas/OGC-API-EDR",
                 }
 

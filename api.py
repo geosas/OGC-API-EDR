@@ -121,7 +121,7 @@ def cube(collectionId):
             {
                 "response": "erreur de syntaxe",
                 "Plus d'information sur la syntaxe Position": "https://docs.ogc.org/is/19-086r6/19-086r6.html#_bbda46d4-04c5-426b-bea3-230d592fe1c2",
-                "informations": "l'api est encore mode béta, si vous pensez qu'il y a un bug ou que vous rencontrez des difficultés, ouvrez une issues sur notre github",
+                "informations": "l'api est encore mode béta, si vous pensez qu'il y a un bug ou que vous rencontrez des difficultés, ouvrez une issue sur notre github",
                 "github": "https://github.com/geosas/OGC-API-EDR",
             }
         )
@@ -148,7 +148,7 @@ def position(collectionId):
             {
                 "response": "erreur de syntaxe",
                 "Plus d'information sur la syntaxe Position": "https://docs.ogc.org/is/19-086r6/19-086r6.html#_bbda46d4-04c5-426b-bea3-230d592fe1c2",
-                "informations": "l'api est encore mode béta, si vous pensez qu'il y a un bug ou que vous rencontrez des difficultés, ouvrez une issues sur notre github",
+                "informations": "l'api est encore mode béta, si vous pensez qu'il y a un bug ou que vous rencontrez des difficultés, ouvrez une issue sur notre github",
                 "github": "https://github.com/geosas/OGC-API-EDR",
             }
         )
@@ -176,7 +176,7 @@ def area(collectionId):
             {
                 "response": "erreur de syntaxe",
                 "Plus d'information sur la syntaxe Position": "https://docs.ogc.org/is/19-086r6/19-086r6.html#_bbda46d4-04c5-426b-bea3-230d592fe1c2",
-                "informations": "l'api est encore mode béta, si vous pensez qu'il y a un bug ou que vous rencontrez des difficultés, ouvrez une issues sur notre github",
+                "informations": "l'api est encore mode béta, si vous pensez qu'il y a un bug ou que vous rencontrez des difficultés, ouvrez une issue sur notre github",
                 "github": "https://github.com/geosas/OGC-API-EDR",
             }
         )
