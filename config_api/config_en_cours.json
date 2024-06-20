@@ -1,6 +1,6 @@
 {
     "safran-isba": {
-        "path": "/data2/meteo/safran/quotidien/SAFRAN_1958-2024_11_param_v1.zarr",
+        "path": "/data2/meteo/safran/quotidien/SAFRAN_1958-2024_12_param_maj_2.zarr",
         "id": "safran-isba",
         "title": "Safran-Isba, Données changement climatique - SIM quotidienne",
         "description": "Données quotidiennes du modèle de simulation des schémas de surface (Safran - Isba). Paramètres atmosphériques de surface et bilans des sols en points de grille issus de l'analyse de modèle simulant les flux d’eau et d’énergie à la surface terrestre.",
@@ -8,7 +8,8 @@
             "Wind Speed",
             "Air Temperature",
             "Precipitation",
-            "Weather"
+            "Weather",
+            "items"
         ],
         "links": [
             {
@@ -31,7 +32,8 @@
             },
             {
                 "href": "https://api.geosas.fr/edr/collections/safran-isba",
-                "rel": "service",
+                "hreflang": "en",
+                "rel": "collection",
                 "type": "application/json"
             }
         ],
@@ -50,229 +52,284 @@
             "temporal": {
                 "interval": [
                     [
-                        "1958-08-01T00:00:00.000000000",
-                        "2024-03-03T00:00:00.000000000"
+                        "1958-08-01T00:00:00Z",
+                        "2024-05-27T00:00:00Z"
                     ]
                 ],
                 "trs": "TIMECRS[\"DateTime\",TDATUM[\"Gregorian Calendar\"],CS[TemporalDateTime,1],AXIS[\"Time (T)\",future]]",
                 "values": [
-                    "1958-08-01T00:00:00.000000000/2024-03-03T00:00:00.000000000"
+                    "1958-08-01T00:00:00Z/2024-05-27T00:00:00Z"
                 ]
             }
         },
         "crs": "IGNF:LAMBE",
-        "parameter_names": [
-            {
-                "DRAINC_Q": {
-                    "description": "Drainage (cumul quotidien 06-06 UTC)",
-                    "measurementType": {
-                        "duration": "PT24H",
-                        "method": "sum"
-                    },
-                    "observedProperty": {
-                        "id": "https://fr.wikipedia.org/wiki/Lame_d%27eau",
-                        "label": "Lame d'eau"
-                    },
-                    "type": "Parameter",
-                    "unit": {
-                        "label": "millimetre",
-                        "symbol": {
-                            "type": "https://fr.wikipedia.org/wiki/Millim%C3%A8tre",
-                            "value": "mm"
-                        }
+        "parameter_names": {
+            "DLI_Q": {
+                "description": "Rayonnement atmosphérique (cumul quotidien)",
+                "measurementType": {
+                    "duration": "PT24H",
+                    "method": "sum"
+                },
+                "observedProperty": {
+                    "id": "http://opendata.inrae.fr/thesaurusINRAE/c_14024",
+                    "label": "Rayonnement"
+                },
+                "type": "Parameter",
+                "unit": {
+                    "label": "Joule par centimètre²",
+                    "symbol": {
+                        "type": "https://fr.wikipedia.org/wiki/Millim%C3%A8tre",
+                        "value": "J/cm²"
                     }
                 }
             },
-            {
-                "ETP_Q": {
-                    "description": "Evapotranspiration potentielle (formule de Penman-Monteith)",
-                    "measurementType": {
-                        "duration": "PT24H",
-                        "method": "sum"
-                    },
-                    "observedProperty": {
-                        "id": "http://opendata.inrae.fr/thesaurusINRAE/c_241",
-                        "label": "Evapotranspiration potentielle"
-                    },
-                    "type": "Parameter",
-                    "unit": {
-                        "label": "millimetre",
-                        "symbol": {
-                            "type": "https://fr.wikipedia.org/wiki/Millim%C3%A8tre",
-                            "value": "mm"
-                        }
+            "DRAINC_Q": {
+                "description": "Drainage (cumul quotidien 06-06 UTC)",
+                "measurementType": {
+                    "duration": "PT24H",
+                    "method": "sum"
+                },
+                "observedProperty": {
+                    "id": "https://fr.wikipedia.org/wiki/Lame_d%27eau",
+                    "label": "Lame d'eau"
+                },
+                "type": "Parameter",
+                "unit": {
+                    "label": "millimetre",
+                    "symbol": {
+                        "type": "https://fr.wikipedia.org/wiki/Millim%C3%A8tre",
+                        "value": "mm"
                     }
                 }
             },
-            {
-                "FF_Q": {
-                    "description": "Vent (moyenne quotidienne)",
-                    "measurementType": {
-                        "duration": "PT24H",
-                        "method": "mean"
-                    },
-                    "observedProperty": {
-                        "id": "http://opendata.inrae.fr/thesaurusINRAE/c_11505",
-                        "label": "Vent"
-                    },
-                    "type": "Parameter",
-                    "unit": {
-                        "label": "mètre par seconde",
-                        "symbol": {
-                            "type": "https://fr.wikipedia.org/wiki/M%C3%A8tre_par_seconde",
-                            "value": "m/s"
-                        }
+            "ETP_Q": {
+                "description": "Evapotranspiration potentielle (formule de Penman-Monteith)",
+                "measurementType": {
+                    "duration": "PT24H",
+                    "method": "sum"
+                },
+                "observedProperty": {
+                    "id": "http://opendata.inrae.fr/thesaurusINRAE/c_241",
+                    "label": "Evapotranspiration potentielle"
+                },
+                "type": "Parameter",
+                "unit": {
+                    "label": "millimetre",
+                    "symbol": {
+                        "type": "https://fr.wikipedia.org/wiki/Millim%C3%A8tre",
+                        "value": "mm"
                     }
                 }
             },
-            {
-                "PRELIQ_Q": {
-                    "description": "Précipitations liquides (cumul quotidien 06-06 UTC)",
-                    "measurementType": {
-                        "duration": "PT24H",
-                        "method": "sum"
-                    },
-                    "observedProperty": {
-                        "id": "http://opendata.inrae.fr/thesaurusINRAE/c_11627",
-                        "label": "Pluie"
-                    },
-                    "type": "Parameter",
-                    "unit": {
-                        "label": "millimetre",
-                        "symbol": {
-                            "type": "https://fr.wikipedia.org/wiki/Millim%C3%A8tre",
-                            "value": "mm"
-                        }
+            "FF_Q": {
+                "description": "Vent (moyenne quotidienne)",
+                "measurementType": {
+                    "duration": "PT24H",
+                    "method": "mean"
+                },
+                "observedProperty": {
+                    "id": "http://opendata.inrae.fr/thesaurusINRAE/c_11505",
+                    "label": "Vent"
+                },
+                "type": "Parameter",
+                "unit": {
+                    "label": "mètre par seconde",
+                    "symbol": {
+                        "type": "https://fr.wikipedia.org/wiki/M%C3%A8tre_par_seconde",
+                        "value": "m/s"
                     }
                 }
             },
-            {
-                "PRENEI_Q": {
-                    "description": "Précipitations solide (cumul quotidien 06-06 UTC)",
-                    "measurementType": {
-                        "duration": "PT24H",
-                        "method": "sum"
-                    },
-                    "observedProperty": {
-                        "id": "http://opendata.inrae.fr/thesaurusINRAE/c_11627",
-                        "label": "Pluie"
-                    },
-                    "type": "Parameter",
-                    "unit": {
-                        "label": "millimetre",
-                        "symbol": {
-                            "type": "https://fr.wikipedia.org/wiki/Millim%C3%A8tre",
-                            "value": "mm"
-                        }
+            "PRELIQ_Q": {
+                "description": "Précipitations liquides (cumul quotidien 06-06 UTC)",
+                "measurementType": {
+                    "duration": "PT24H",
+                    "method": "sum"
+                },
+                "observedProperty": {
+                    "id": "http://opendata.inrae.fr/thesaurusINRAE/c_11627",
+                    "label": "Pluie"
+                },
+                "type": "Parameter",
+                "unit": {
+                    "label": "millimetre",
+                    "symbol": {
+                        "type": "https://fr.wikipedia.org/wiki/Millim%C3%A8tre",
+                        "value": "mm"
                     }
                 }
             },
-            {
-                "SSI_Q": {
-                    "description": "Rayonnement atmosphérique (cumul quotidien)",
-                    "measurementType": {
-                        "duration": "PT24H",
-                        "method": "sum"
-                    },
-                    "observedProperty": {
-                        "id": "http://opendata.inrae.fr/thesaurusINRAE/c_14024",
-                        "label": "Rayonnement"
-                    },
-                    "type": "Parameter",
-                    "unit": {
-                        "label": "Joule par centimètre²",
-                        "symbol": {
-                            "type": "https://fr.wikipedia.org/wiki/Millim%C3%A8tre",
-                            "value": "J/cm²"
-                        }
+            "PRENEI_Q": {
+                "description": "Précipitations solide (cumul quotidien 06-06 UTC)",
+                "measurementType": {
+                    "duration": "PT24H",
+                    "method": "sum"
+                },
+                "observedProperty": {
+                    "id": "http://opendata.inrae.fr/thesaurusINRAE/c_11627",
+                    "label": "Pluie"
+                },
+                "type": "Parameter",
+                "unit": {
+                    "label": "millimetre",
+                    "symbol": {
+                        "type": "https://fr.wikipedia.org/wiki/Millim%C3%A8tre",
+                        "value": "mm"
                     }
                 }
             },
-            {
-                "SWI_Q": {
-                    "description": "Indice d'humidité des sols (moyenne quotidienne 06-06 UTC)",
-                    "measurementType": {
-                        "duration": "PT24H",
-                        "method": "moyenne"
-                    },
-                    "observedProperty": {
-                        "id": "Soil moisture",
-                        "label": "Humidité des sols "
-                    },
-                    "type": "Parameter",
-                    "unit": {
-                        "label": "Pourcentage",
-                        "symbol": {
-                            "type": "https://fr.wikipedia.org/wiki/Pourcentage",
-                            "value": "%"
-                        }
+            "SSI_Q": {
+                "description": "Rayonnement visible (cumul quotidien)",
+                "measurementType": {
+                    "duration": "PT24H",
+                    "method": "sum"
+                },
+                "observedProperty": {
+                    "id": "http://opendata.inrae.fr/thesaurusINRAE/c_14024",
+                    "label": "Rayonnement"
+                },
+                "type": "Parameter",
+                "unit": {
+                    "label": "Joule par centimètre²",
+                    "symbol": {
+                        "type": "https://fr.wikipedia.org/wiki/Millim%C3%A8tre",
+                        "value": "J/cm²"
                     }
                 }
             },
-            {
-                "TINF_H_Q": {
-                    "description": "Température minimale des 24 températures horaires",
-                    "measurementType": {
-                        "duration": "PT24H",
-                        "method": "minimale"
-                    },
-                    "observedProperty": {
-                        "id": "http://opendata.inrae.fr/thesaurusINRAE/c_1243",
-                        "label": "Température de l'air"
-                    },
-                    "type": "Parameter",
-                    "unit": {
-                        "label": "degrée Celcius",
-                        "symbol": {
-                            "type": "https://fr.wikipedia.org/wiki/Degr%C3%A9_Celsius",
-                            "value": "°C"
-                        }
+            "SWI_Q": {
+                "description": "Indice d'humidité des sols (moyenne quotidienne 06-06 UTC)",
+                "measurementType": {
+                    "duration": "PT24H",
+                    "method": "moyenne"
+                },
+                "observedProperty": {
+                    "id": "Soil moisture",
+                    "label": "Humidité des sols "
+                },
+                "type": "Parameter",
+                "unit": {
+                    "label": "Pourcentage",
+                    "symbol": {
+                        "type": "https://fr.wikipedia.org/wiki/Pourcentage",
+                        "value": "%"
                     }
                 }
             },
-            {
-                "TSUP_H_Q": {
-                    "description": "Température maximale des 24 températures horaires",
-                    "measurementType": {
-                        "duration": "PT24H",
-                        "method": "maximum"
-                    },
-                    "observedProperty": {
-                        "id": "http://opendata.inrae.fr/thesaurusINRAE/c_1243",
-                        "label": "Température de l'air"
-                    },
-                    "type": "Parameter",
-                    "unit": {
-                        "label": "degrée Celcius",
-                        "symbol": {
-                            "type": "https://fr.wikipedia.org/wiki/Degr%C3%A9_Celsius",
-                            "value": "°C"
-                        }
+            "TINF_H_Q": {
+                "description": "Température minimale des 24 températures horaires",
+                "measurementType": {
+                    "duration": "PT24H",
+                    "method": "minimale"
+                },
+                "observedProperty": {
+                    "id": "http://opendata.inrae.fr/thesaurusINRAE/c_1243",
+                    "label": "Température de l'air"
+                },
+                "type": "Parameter",
+                "unit": {
+                    "label": "degrée Celcius",
+                    "symbol": {
+                        "type": "https://fr.wikipedia.org/wiki/Degr%C3%A9_Celsius",
+                        "value": "°C"
                     }
                 }
             },
-            {
-                "T_Q": {
-                    "description": "Température (moyenne quotidienne)",
-                    "measurementType": {
-                        "duration": "PT24H",
-                        "method": "moyenne"
-                    },
-                    "observedProperty": {
-                        "id": "http://opendata.inrae.fr/thesaurusINRAE/c_1243",
-                        "label": "Température de l'air"
-                    },
-                    "type": "Parameter",
-                    "unit": {
-                        "label": "degrée Celcius",
-                        "symbol": {
-                            "type": "https://fr.wikipedia.org/wiki/Degr%C3%A9_Celsius",
-                            "value": "°C"
-                        }
+            "TSUP_H_Q": {
+                "description": "Température maximale des 24 températures horaires",
+                "measurementType": {
+                    "duration": "PT24H",
+                    "method": "maximum"
+                },
+                "observedProperty": {
+                    "id": "http://opendata.inrae.fr/thesaurusINRAE/c_1243",
+                    "label": "Température de l'air"
+                },
+                "type": "Parameter",
+                "unit": {
+                    "label": "degrée Celcius",
+                    "symbol": {
+                        "type": "https://fr.wikipedia.org/wiki/Degr%C3%A9_Celsius",
+                        "value": "°C"
+                    }
+                }
+            },
+            "T_Q": {
+                "description": "Température (moyenne quotidienne)",
+                "measurementType": {
+                    "duration": "PT24H",
+                    "method": "moyenne"
+                },
+                "observedProperty": {
+                    "id": "http://opendata.inrae.fr/thesaurusINRAE/c_1243",
+                    "label": "Température de l'air"
+                },
+                "type": "Parameter",
+                "unit": {
+                    "label": "degrée Celcius",
+                    "symbol": {
+                        "type": "https://fr.wikipedia.org/wiki/Degr%C3%A9_Celsius",
+                        "value": "°C"
                     }
                 }
             }
-        ]
+        },
+        "data_queries": {
+            "position": {
+                "link": {
+                    "href": "https://api.geosas.fr/edr/collections/safran-isba/position",
+                    "hreflang": "en",
+                    "rel": "data",
+                    "variables": {
+                        "title": "Position query",
+                        "query_type": "position",
+                        "output_formats": [
+                            "CoverageJSON",
+                            "CSV",
+                            "netCDF4"
+                        ],
+                        "default_output_format": "CoverageJSON",
+                        "crs_details": [
+                            {
+                                "crs": "EPSG:4326",
+                                "wkt": "GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.01745329251994328,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]]"
+                            },
+                            {
+                                "crs": "EPSG:2154",
+                                "wkt": "PROJCS[\"RGF93 v1 / Lambert-93\",GEOGCS[\"RGF93 v1\",DATUM[\"Reseau_Geodesique_Francais_1993_v1\",SPHEROID[\"GRS 1980\",6378137,298.257222101],TOWGS84[0,0,0,0,0,0,0]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4171\"]],PROJECTION[\"Lambert_Conformal_Conic_2SP\"],PARAMETER[\"latitude_of_origin\",46.5],PARAMETER[\"central_meridian\",3],PARAMETER[\"standard_parallel_1\",49],PARAMETER[\"standard_parallel_2\",44],PARAMETER[\"false_easting\",700000],PARAMETER[\"false_northing\",6600000],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH],AUTHORITY[\"EPSG\",\"2154\"]]"
+                            }
+                        ]
+                    }
+                }
+            },
+            "cube": {
+                "link": {
+                    "href": "https://api.geosas.fr/edr/collections/safran-isba/cube",
+                    "hreflang": "en",
+                    "rel": "data",
+                    "variables": {
+                        "title": "Cube query",
+                        "query_type": "cube",
+                        "output_formats": [
+                            "CoverageJSON",
+                            "CSV",
+                            "netCDF4"
+                        ],
+                        "default_output_format": "CoverageJSON",
+                        "crs_details": [
+                            {
+                                "crs": "EPSG:2154",
+                                "wkt": "PROJCS[\"RGF93 v1 / Lambert-93\",GEOGCS[\"RGF93 v1\",DATUM[\"Reseau_Geodesique_Francais_1993_v1\",SPHEROID[\"GRS 1980\",6378137,298.257222101],TOWGS84[0,0,0,0,0,0,0]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4171\"]],PROJECTION[\"Lambert_Conformal_Conic_2SP\"],PARAMETER[\"latitude_of_origin\",46.5],PARAMETER[\"central_meridian\",3],PARAMETER[\"standard_parallel_1\",49],PARAMETER[\"standard_parallel_2\",44],PARAMETER[\"false_easting\",700000],PARAMETER[\"false_northing\",6600000],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH],AUTHORITY[\"EPSG\",\"2154\"]]"
+                            },
+                            {
+                                "crs": "EPSG:4326",
+                                "wkt": "GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.01745329251994328,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]]"
+                            }
+                        ]
+                    }
+                }
+            }
+        }
     },
     "RPG-Raster": {
         "path": "/data2/rpg/rpg_2006-2021.zarr",
@@ -299,7 +356,8 @@
             },
             {
                 "href": "https://api.geosas.fr/edr/collections/RPG-Raster",
-                "rel": "service",
+                "hreflang": "en",
+                "rel": "collection",
                 "type": "application/json"
             }
         ],
@@ -329,320 +387,505 @@
             }
         },
         "crs": "EPSG:2154",
-        "parameter_names": [
-            {
-                "code_groupe": {
-                    "categoryEncoding": {
-                        "http://opendata.inrae.fr/thesaurusINRAE/c_10560e6f": 19,
-                        "http://opendata.inrae.fr/thesaurusINRAE/c_1233": 15,
-                        "http://opendata.inrae.fr/thesaurusINRAE/c_2269": 5,
-                        "http://opendata.inrae.fr/thesaurusINRAE/c_23133": 11,
-                        "http://opendata.inrae.fr/thesaurusINRAE/c_23354": 23,
-                        "http://opendata.inrae.fr/thesaurusINRAE/c_24452": 1,
-                        "http://opendata.inrae.fr/thesaurusINRAE/c_2508": 20,
-                        "http://opendata.inrae.fr/thesaurusINRAE/c_25176": 21,
-                        "http://opendata.inrae.fr/thesaurusINRAE/c_25193": 2,
-                        "http://opendata.inrae.fr/thesaurusINRAE/c_25624": 6,
-                        "http://opendata.inrae.fr/thesaurusINRAE/c_2638": 16,
-                        "http://opendata.inrae.fr/thesaurusINRAE/c_294": 17,
-                        "http://opendata.inrae.fr/thesaurusINRAE/c_3084": 4,
-                        "http://opendata.inrae.fr/thesaurusINRAE/c_3369": 28,
-                        "http://opendata.inrae.fr/thesaurusINRAE/c_3427 ": 7,
-                        "http://opendata.inrae.fr/thesaurusINRAE/c_3495": 14,
-                        "http://opendata.inrae.fr/thesaurusINRAE/c_3603": 3,
-                        "http://opendata.inrae.fr/thesaurusINRAE/c_3826": 18,
-                        "http://opendata.inrae.fr/thesaurusINRAE/c_4029": 22,
-                        "http://opendata.inrae.fr/thesaurusINRAE/c_5627:": 24,
-                        "http://opendata.inrae.fr/thesaurusINRAE/c_7408": 25,
-                        "http://opendata.inrae.fr/thesaurusINRAE/c_8499": 8,
-                        "http://opendata.inrae.fr/thesaurusINRAE/c_94d320ff": 26,
-                        "http://opendata.inrae.fr/thesaurusINRAE/c_9965": 9
-                    },
-                    "description": "Code du groupe de la culture principale de la parcelle",
-                    "measurementType": {
-                        "duration": "PT1Y",
-                        "method": "mode"
-                    },
-                    "observedProperty": {
-                        "categories": [
-                            {
-                                "description": {
-                                    "fr": "Groupe de culture du blé tendre du Registre Parcellaire Graphique"
-                                },
-                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_24452",
-                                "label": {
-                                    "en": "Soft wheat",
-                                    "fr": "Blé tendre"
-                                },
-                                "preferredColor": "#ffff90"
+        "parameter_names": {
+            "code_groupe": {
+                "categoryEncoding": {
+                    "http://opendata.inrae.fr/thesaurusINRAE/c_10560e6f": 19,
+                    "http://opendata.inrae.fr/thesaurusINRAE/c_1233": 15,
+                    "http://opendata.inrae.fr/thesaurusINRAE/c_2269": 5,
+                    "http://opendata.inrae.fr/thesaurusINRAE/c_23133": 11,
+                    "http://opendata.inrae.fr/thesaurusINRAE/c_23354": 23,
+                    "http://opendata.inrae.fr/thesaurusINRAE/c_24452": 1,
+                    "http://opendata.inrae.fr/thesaurusINRAE/c_2508": 20,
+                    "http://opendata.inrae.fr/thesaurusINRAE/c_25176": 21,
+                    "http://opendata.inrae.fr/thesaurusINRAE/c_25193": 2,
+                    "http://opendata.inrae.fr/thesaurusINRAE/c_25624": 6,
+                    "http://opendata.inrae.fr/thesaurusINRAE/c_2638": 16,
+                    "http://opendata.inrae.fr/thesaurusINRAE/c_294": 17,
+                    "http://opendata.inrae.fr/thesaurusINRAE/c_3084": 4,
+                    "http://opendata.inrae.fr/thesaurusINRAE/c_3369": 28,
+                    "http://opendata.inrae.fr/thesaurusINRAE/c_3427 ": 7,
+                    "http://opendata.inrae.fr/thesaurusINRAE/c_3495": 14,
+                    "http://opendata.inrae.fr/thesaurusINRAE/c_3603": 3,
+                    "http://opendata.inrae.fr/thesaurusINRAE/c_3826": 18,
+                    "http://opendata.inrae.fr/thesaurusINRAE/c_4029": 22,
+                    "http://opendata.inrae.fr/thesaurusINRAE/c_5627:": 24,
+                    "http://opendata.inrae.fr/thesaurusINRAE/c_7408": 25,
+                    "http://opendata.inrae.fr/thesaurusINRAE/c_8499": 8,
+                    "http://opendata.inrae.fr/thesaurusINRAE/c_94d320ff": 26,
+                    "http://opendata.inrae.fr/thesaurusINRAE/c_9965": 9
+                },
+                "description": "Code du groupe de la culture principale de la parcelle",
+                "measurementType": {
+                    "duration": "PT1Y",
+                    "method": "mode"
+                },
+                "observedProperty": {
+                    "categories": [
+                        {
+                            "description": {
+                                "fr": "Groupe de culture du blé tendre du Registre Parcellaire Graphique"
                             },
-                            {
-                                "description": {
-                                    "fr": "Groupe de culture du maïs grain et ensilage du Registre Parcellaire Graphique"
-                                },
-                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_25193",
-                                "label": {
-                                    "en": "Corn",
-                                    "fr": "Maïs grain et ensilage"
-                                },
-                                "preferredColor": "#00ff00"
+                            "id": "http://opendata.inrae.fr/thesaurusINRAE/c_24452",
+                            "label": {
+                                "en": "Soft wheat",
+                                "fr": "Blé tendre"
                             },
-                            {
-                                "description": {
-                                    "fr": "Groupe de culture de l'orge du Registre Parcellaire Graphique"
-                                },
-                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_3603",
-                                "label": {
-                                    "en": "Barley",
-                                    "fr": "Orge"
-                                },
-                                "preferredColor": "#f0ff70"
+                            "preferredColor": "#ffff90"
+                        },
+                        {
+                            "description": {
+                                "fr": "Groupe de culture du maïs grain et ensilage du Registre Parcellaire Graphique"
                             },
-                            {
-                                "description": {
-                                    "fr": "Groupe de culture des autres céréales du Registre Parcellaire Graphique"
-                                },
-                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_3084",
-                                "label": {
-                                    "en": "Other cereal",
-                                    "fr": "Autres céréales"
-                                },
-                                "preferredColor": "#daeb00"
+                            "id": "http://opendata.inrae.fr/thesaurusINRAE/c_25193",
+                            "label": {
+                                "en": "Corn",
+                                "fr": "Maïs grain et ensilage"
                             },
-                            {
-                                "description": {
-                                    "fr": "Groupe de culture du colza du Registre Parcellaire Graphique"
-                                },
-                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_2269",
-                                "label": {
-                                    "en": "Rapeseed",
-                                    "fr": "Colza"
-                                },
-                                "preferredColor": "#ffecb0"
+                            "preferredColor": "#00ff00"
+                        },
+                        {
+                            "description": {
+                                "fr": "Groupe de culture de l'orge du Registre Parcellaire Graphique"
                             },
-                            {
-                                "description": {
-                                    "fr": "Groupe de culture du tournesol du Registre Parcellaire Graphique"
-                                },
-                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_25624",
-                                "label": {
-                                    "en": "Sunflower",
-                                    "fr": "Tournesol"
-                                },
-                                "preferredColor": "#ffff00"
+                            "id": "http://opendata.inrae.fr/thesaurusINRAE/c_3603",
+                            "label": {
+                                "en": "Barley",
+                                "fr": "Orge"
                             },
-                            {
-                                "description": {
-                                    "fr": "Groupe de culture des autres oléagineux du Registre Parcellaire Graphique"
-                                },
-                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_3427",
-                                "label": {
-                                    "en": "Other oilseeds",
-                                    "fr": "Autres oléagineux"
-                                },
-                                "preferredColor": "#ffce00"
+                            "preferredColor": "#f0ff70"
+                        },
+                        {
+                            "description": {
+                                "fr": "Groupe de culture des autres céréales du Registre Parcellaire Graphique"
                             },
-                            {
-                                "description": {
-                                    "fr": "Groupe de culture des protéagineux du Registre Parcellaire Graphique"
-                                },
-                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_8499",
-                                "label": {
-                                    "en": "Protein",
-                                    "fr": "Protéagineux"
-                                },
-                                "preferredColor": "#f0b400"
+                            "id": "http://opendata.inrae.fr/thesaurusINRAE/c_3084",
+                            "label": {
+                                "en": "Other cereal",
+                                "fr": "Autres céréales"
                             },
-                            {
-                                "description": {
-                                    "fr": "Groupe de culture des plantes à fibre du Registre Parcellaire Graphique"
-                                },
-                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_9965",
-                                "label": {
-                                    "en": "Fiber plants",
-                                    "fr": "Plantes à fibres"
-                                },
-                                "preferredColor": "#c09000"
+                            "preferredColor": "#daeb00"
+                        },
+                        {
+                            "description": {
+                                "fr": "Groupe de culture du colza du Registre Parcellaire Graphique"
                             },
-                            {
-                                "description": {
-                                    "fr": "Groupe de culture des autres oléagineux du Registre Parcellaire Graphique"
-                                },
-                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_23133",
-                                "label": {
-                                    "en": "Gel (frozen surfaces without production)",
-                                    "fr": "gel (surfaces gelées sans production)"
-                                },
-                                "preferredColor": "#f0f0f0"
+                            "id": "http://opendata.inrae.fr/thesaurusINRAE/c_2269",
+                            "label": {
+                                "en": "Rapeseed",
+                                "fr": "Colza"
                             },
-                            {
-                                "description": {
-                                    "fr": "Groupe de culture du riz du Registre Parcellaire Graphique"
-                                },
-                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_3495",
-                                "label": {
-                                    "en": "Rice",
-                                    "fr": "Riz"
-                                },
-                                "preferredColor": "#8fb5fe"
+                            "preferredColor": "#ffecb0"
+                        },
+                        {
+                            "description": {
+                                "fr": "Groupe de culture du tournesol du Registre Parcellaire Graphique"
                             },
-                            {
-                                "description": {
-                                    "fr": "Groupe de culture des légumineuse à graine du Registre Parcellaire Graphique"
-                                },
-                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_1233",
-                                "label": {
-                                    "en": "Grain legumes",
-                                    "fr": "Légumineuses à grain"
-                                },
-                                "preferredColor": "#ffa080"
+                            "id": "http://opendata.inrae.fr/thesaurusINRAE/c_25624",
+                            "label": {
+                                "en": "Sunflower",
+                                "fr": "Tournesol"
                             },
-                            {
-                                "description": {
-                                    "fr": "Groupe de culture du fourrage du Registre Parcellaire Graphique"
-                                },
-                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_23133",
-                                "label": {
-                                    "en": "Fodder",
-                                    "fr": "Fourrage"
-                                },
-                                "preferredColor": "#9fc75d"
+                            "preferredColor": "#ffff00"
+                        },
+                        {
+                            "description": {
+                                "fr": "Groupe de culture des autres oléagineux du Registre Parcellaire Graphique"
                             },
-                            {
-                                "description": {
-                                    "fr": "Groupe de culture des estives et landes du Registre Parcellaire Graphique"
-                                },
-                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_294",
-                                "label": {
-                                    "en": "Mountain pastures and moors",
-                                    "fr": "Estives et landes"
-                                },
-                                "preferredColor": "#b5e66b"
+                            "id": "http://opendata.inrae.fr/thesaurusINRAE/c_3427",
+                            "label": {
+                                "en": "Other oilseeds",
+                                "fr": "Autres oléagineux"
                             },
-                            {
-                                "description": {
-                                    "fr": "Groupe de culture des prairies permanentes du Registre Parcellaire Graphique"
-                                },
-                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_3826",
-                                "label": {
-                                    "en": "Permanent grassland",
-                                    "fr": "Prairies permanentes"
-                                },
-                                "preferredColor": "#c0ff60"
+                            "preferredColor": "#ffce00"
+                        },
+                        {
+                            "description": {
+                                "fr": "Groupe de culture des protéagineux du Registre Parcellaire Graphique"
                             },
-                            {
-                                "description": {
-                                    "fr": "Groupe de culture des prairies temporaires du Registre Parcellaire Graphique"
-                                },
-                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_10560e6f",
-                                "label": {
-                                    "en": "Temporary grassland",
-                                    "fr": "Prairies temporaires"
-                                },
-                                "preferredColor": "#e0ffb0"
+                            "id": "http://opendata.inrae.fr/thesaurusINRAE/c_8499",
+                            "label": {
+                                "en": "Protein",
+                                "fr": "Protéagineux"
                             },
-                            {
-                                "description": {
-                                    "fr": "Groupe de culture des vergers du Registre Parcellaire Graphique"
-                                },
-                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_2508",
-                                "label": {
-                                    "en": "Orchards",
-                                    "fr": "Vergers"
-                                },
-                                "preferredColor": "#ff0000"
+                            "preferredColor": "#f0b400"
+                        },
+                        {
+                            "description": {
+                                "fr": "Groupe de culture des plantes à fibre du Registre Parcellaire Graphique"
                             },
-                            {
-                                "description": {
-                                    "fr": "Groupe de culture des vignes du Registre Parcellaire Graphique"
-                                },
-                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_25176",
-                                "label": {
-                                    "en": "Vineyards",
-                                    "fr": "Vignes"
-                                },
-                                "preferredColor": "#de01e4"
+                            "id": "http://opendata.inrae.fr/thesaurusINRAE/c_9965",
+                            "label": {
+                                "en": "Fiber plants",
+                                "fr": "Plantes à fibres"
                             },
-                            {
-                                "description": {
-                                    "fr": "Groupe de culture des fruits à coque du Registre Parcellaire Graphique"
-                                },
-                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_4029",
-                                "label": {
-                                    "en": "Nuts",
-                                    "fr": "Fruits à coque"
-                                },
-                                "preferredColor": "#008000"
+                            "preferredColor": "#c09000"
+                        },
+                        {
+                            "description": {
+                                "fr": "Groupe de culture des autres oléagineux du Registre Parcellaire Graphique"
                             },
-                            {
-                                "description": {
-                                    "fr": "Groupe de culture des oliviers du Registre Parcellaire Graphique"
-                                },
-                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_23354",
-                                "label": {
-                                    "en": "Olive trees",
-                                    "fr": "Oliviers"
-                                },
-                                "preferredColor": "#a2a200"
+                            "id": "http://opendata.inrae.fr/thesaurusINRAE/c_23133",
+                            "label": {
+                                "en": "Gel (frozen surfaces without production)",
+                                "fr": "gel (surfaces gelées sans production)"
                             },
-                            {
-                                "description": {
-                                    "fr": "Groupe de culture des autres cultures industrielles du Registre Parcellaire Graphique"
-                                },
-                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_5627",
-                                "label": {
-                                    "en": "Other industrial crops",
-                                    "fr": "Autres cultures industrielles"
-                                },
-                                "preferredColor": "#008080"
+                            "preferredColor": "#f0f0f0"
+                        },
+                        {
+                            "description": {
+                                "fr": "Groupe de culture du riz du Registre Parcellaire Graphique"
                             },
-                            {
-                                "description": {
-                                    "fr": "Groupe de culture des légumes ou fleurs du Registre Parcellaire Graphique"
-                                },
-                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_7408",
-                                "label": {
-                                    "en": "Vegetables or flowers",
-                                    "fr": "Légumes ou fleurs"
-                                },
-                                "preferredColor": "#ffa0d0"
+                            "id": "http://opendata.inrae.fr/thesaurusINRAE/c_3495",
+                            "label": {
+                                "en": "Rice",
+                                "fr": "Riz"
                             },
-                            {
-                                "description": {
-                                    "fr": "Groupe de culture de la canne à sucre du Registre Parcellaire Graphique"
-                                },
-                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_94d320ff",
-                                "label": {
-                                    "en": "Sugar cane",
-                                    "fr": "Canne à sucre"
-                                },
-                                "preferredColor": "#0000ff"
+                            "preferredColor": "#8fb5fe"
+                        },
+                        {
+                            "description": {
+                                "fr": "Groupe de culture des légumineuse à graine du Registre Parcellaire Graphique"
                             },
-                            {
-                                "description": {
-                                    "fr": "Groupe de culture divers du Registre Parcellaire Graphique"
-                                },
-                                "id": "http://opendata.inrae.fr/thesaurusINRAE/c_3369",
-                                "label": {
-                                    "en": "Other",
-                                    "fr": "Divers"
-                                },
-                                "preferredColor": "#00b058"
-                            }
-                        ],
-                        "id": "https://collections.eurodatacube.com/france-metropolitan-gsaa/readme.html ",
-                        "label": "code_groupe"
-                    },
-                    "type": "Parameter",
-                    "unit": {
-                        "label": "Groupe de culture",
-                        "symbol": {
-                            "type": "",
-                            "value": ""
+                            "id": "http://opendata.inrae.fr/thesaurusINRAE/c_1233",
+                            "label": {
+                                "en": "Grain legumes",
+                                "fr": "Légumineuses à grain"
+                            },
+                            "preferredColor": "#ffa080"
+                        },
+                        {
+                            "description": {
+                                "fr": "Groupe de culture du fourrage du Registre Parcellaire Graphique"
+                            },
+                            "id": "http://opendata.inrae.fr/thesaurusINRAE/c_23133",
+                            "label": {
+                                "en": "Fodder",
+                                "fr": "Fourrage"
+                            },
+                            "preferredColor": "#9fc75d"
+                        },
+                        {
+                            "description": {
+                                "fr": "Groupe de culture des estives et landes du Registre Parcellaire Graphique"
+                            },
+                            "id": "http://opendata.inrae.fr/thesaurusINRAE/c_294",
+                            "label": {
+                                "en": "Mountain pastures and moors",
+                                "fr": "Estives et landes"
+                            },
+                            "preferredColor": "#b5e66b"
+                        },
+                        {
+                            "description": {
+                                "fr": "Groupe de culture des prairies permanentes du Registre Parcellaire Graphique"
+                            },
+                            "id": "http://opendata.inrae.fr/thesaurusINRAE/c_3826",
+                            "label": {
+                                "en": "Permanent grassland",
+                                "fr": "Prairies permanentes"
+                            },
+                            "preferredColor": "#c0ff60"
+                        },
+                        {
+                            "description": {
+                                "fr": "Groupe de culture des prairies temporaires du Registre Parcellaire Graphique"
+                            },
+                            "id": "http://opendata.inrae.fr/thesaurusINRAE/c_10560e6f",
+                            "label": {
+                                "en": "Temporary grassland",
+                                "fr": "Prairies temporaires"
+                            },
+                            "preferredColor": "#e0ffb0"
+                        },
+                        {
+                            "description": {
+                                "fr": "Groupe de culture des vergers du Registre Parcellaire Graphique"
+                            },
+                            "id": "http://opendata.inrae.fr/thesaurusINRAE/c_2508",
+                            "label": {
+                                "en": "Orchards",
+                                "fr": "Vergers"
+                            },
+                            "preferredColor": "#ff0000"
+                        },
+                        {
+                            "description": {
+                                "fr": "Groupe de culture des vignes du Registre Parcellaire Graphique"
+                            },
+                            "id": "http://opendata.inrae.fr/thesaurusINRAE/c_25176",
+                            "label": {
+                                "en": "Vineyards",
+                                "fr": "Vignes"
+                            },
+                            "preferredColor": "#de01e4"
+                        },
+                        {
+                            "description": {
+                                "fr": "Groupe de culture des fruits à coque du Registre Parcellaire Graphique"
+                            },
+                            "id": "http://opendata.inrae.fr/thesaurusINRAE/c_4029",
+                            "label": {
+                                "en": "Nuts",
+                                "fr": "Fruits à coque"
+                            },
+                            "preferredColor": "#008000"
+                        },
+                        {
+                            "description": {
+                                "fr": "Groupe de culture des oliviers du Registre Parcellaire Graphique"
+                            },
+                            "id": "http://opendata.inrae.fr/thesaurusINRAE/c_23354",
+                            "label": {
+                                "en": "Olive trees",
+                                "fr": "Oliviers"
+                            },
+                            "preferredColor": "#a2a200"
+                        },
+                        {
+                            "description": {
+                                "fr": "Groupe de culture des autres cultures industrielles du Registre Parcellaire Graphique"
+                            },
+                            "id": "http://opendata.inrae.fr/thesaurusINRAE/c_5627",
+                            "label": {
+                                "en": "Other industrial crops",
+                                "fr": "Autres cultures industrielles"
+                            },
+                            "preferredColor": "#008080"
+                        },
+                        {
+                            "description": {
+                                "fr": "Groupe de culture des légumes ou fleurs du Registre Parcellaire Graphique"
+                            },
+                            "id": "http://opendata.inrae.fr/thesaurusINRAE/c_7408",
+                            "label": {
+                                "en": "Vegetables or flowers",
+                                "fr": "Légumes ou fleurs"
+                            },
+                            "preferredColor": "#ffa0d0"
+                        },
+                        {
+                            "description": {
+                                "fr": "Groupe de culture de la canne à sucre du Registre Parcellaire Graphique"
+                            },
+                            "id": "http://opendata.inrae.fr/thesaurusINRAE/c_94d320ff",
+                            "label": {
+                                "en": "Sugar cane",
+                                "fr": "Canne à sucre"
+                            },
+                            "preferredColor": "#0000ff"
+                        },
+                        {
+                            "description": {
+                                "fr": "Groupe de culture divers du Registre Parcellaire Graphique"
+                            },
+                            "id": "http://opendata.inrae.fr/thesaurusINRAE/c_3369",
+                            "label": {
+                                "en": "Other",
+                                "fr": "Divers"
+                            },
+                            "preferredColor": "#00b058"
                         }
+                    ],
+                    "id": "https://collections.eurodatacube.com/france-metropolitan-gsaa/readme.html ",
+                    "label": "code_groupe"
+                },
+                "type": "Parameter",
+                "unit": {
+                    "label": "Groupe de culture",
+                    "symbol": {
+                        "type": "",
+                        "value": ""
                     }
                 }
             }
-        ]
+        },
+        "data_queries": {
+            "position": {
+                "link": {
+                    "href": "https://api.geosas.fr/edr/collections/RPG-Raster/position",
+                    "hreflang": "en",
+                    "rel": "data",
+                    "variables": {
+                        "title": "Position query",
+                        "query_type": "position",
+                        "output_formats": [
+                            "CoverageJSON",
+                            "CSV",
+                            "netCDF4"
+                        ],
+                        "default_output_format": "CoverageJSON",
+                        "crs_details": [
+                            {
+                                "crs": "EPSG:4326",
+                                "wkt": "GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.01745329251994328,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]]"
+                            },
+                            {
+                                "crs": "EPSG:2154",
+                                "wkt": "PROJCS[\"RGF93 v1 / Lambert-93\",GEOGCS[\"RGF93 v1\",DATUM[\"Reseau_Geodesique_Francais_1993_v1\",SPHEROID[\"GRS 1980\",6378137,298.257222101],TOWGS84[0,0,0,0,0,0,0]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4171\"]],PROJECTION[\"Lambert_Conformal_Conic_2SP\"],PARAMETER[\"latitude_of_origin\",46.5],PARAMETER[\"central_meridian\",3],PARAMETER[\"standard_parallel_1\",49],PARAMETER[\"standard_parallel_2\",44],PARAMETER[\"false_easting\",700000],PARAMETER[\"false_northing\",6600000],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH],AUTHORITY[\"EPSG\",\"2154\"]]"
+                            }
+                        ]
+                    }
+                }
+            },
+            "cube": {
+                "link": {
+                    "href": "https://api.geosas.fr/edr/collections/RPG-Raster/cube",
+                    "hreflang": "en",
+                    "rel": "data",
+                    "variables": {
+                        "title": "Cube query",
+                        "query_type": "cube",
+                        "output_formats": [
+                            "CoverageJSON",
+                            "CSV",
+                            "netCDF4"
+                        ],
+                        "default_output_format": "CoverageJSON",
+                        "crs_details": [
+                            {
+                                "crs": "EPSG:2154",
+                                "wkt": "PROJCS[\"RGF93 v1 / Lambert-93\",GEOGCS[\"RGF93 v1\",DATUM[\"Reseau_Geodesique_Francais_1993_v1\",SPHEROID[\"GRS 1980\",6378137,298.257222101],TOWGS84[0,0,0,0,0,0,0]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4171\"]],PROJECTION[\"Lambert_Conformal_Conic_2SP\"],PARAMETER[\"latitude_of_origin\",46.5],PARAMETER[\"central_meridian\",3],PARAMETER[\"standard_parallel_1\",49],PARAMETER[\"standard_parallel_2\",44],PARAMETER[\"false_easting\",700000],PARAMETER[\"false_northing\",6600000],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH],AUTHORITY[\"EPSG\",\"2154\"]]"
+                            },
+                            {
+                                "crs": "EPSG:4326",
+                                "wkt": "GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.01745329251994328,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]]"
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "Indice-Sentinel2": {
+        "path": "/data2/rpg/indice/IV_mcariosavi.zarr",
+        "id": "Indice-Sentinel2",
+        "title": "indice végétation Sentinel",
+        "description": "Cette API distribue des indices de végéation issue d'image sentinel l3a theia en Bretagne",
+        "keywords": [
+            "RPG",
+            "Registre Parcellaire Graphique",
+            "Culture",
+            "Sentinel-2",
+            "Indice de culture"
+        ],
+        "links": [
+            {
+                "href": "https://www.data.gouv.fr/fr/datasets/registre-parcellaire-graphique-rpg-contours-des-parcelles-et-ilots-culturaux-et-leur-groupe-de-cultures-majoritaire/",
+                "hreflang": "fr",
+                "rel": "service-doc",
+                "type": "text/html"
+            },
+            {
+                "href": "https://api.geosas.fr/edr/collections/Indice-Sentinel2",
+                "hreflang": "en",
+                "rel": "collection",
+                "type": "application/json"
+            }
+        ],
+        "extent": {
+            "spatial": {
+                "bbox": [
+                    [
+                        340405.0,
+                        5228045.0,
+                        647625.0,
+                        5419205.0
+                    ]
+                ],
+                "crs": "EPSG:32630"
+            },
+            "temporal": {
+                "interval": [
+                    [
+                        "2024-01-01T00:00:00.000000000",
+                        "2024-01-01T00:00:00.000000000"
+                    ]
+                ],
+                "trs": "TIMECRS[\"DateTime\",TDATUM[\"Gregorian Calendar\"],CS[TemporalDateTime,1],AXIS[\"Time (T)\",future]]",
+                "values": [
+                    "2024-01-01T00:00:00.000000000/2024-01-01T00:00:00.000000000"
+                ]
+            }
+        },
+        "crs": "EPSG:32630",
+        "parameter_names": {
+            "mcariosavi705": {
+                "description": "Vegetation index",
+                "mcariosavi705": "",
+                "measurementType": {
+                    "duration": "PT1M",
+                    "method": "mean"
+                },
+                "observedProperty": {
+                    "id": "https://doi.org/10.1016/j.agrformet.2008.03.005",
+                    "label": "mcariosavi705"
+                },
+                "type": "Parameter",
+                "unit": {
+                    "label": "mcariosavi705",
+                    "symbol": {
+                        "type": "index",
+                        "value": "mcariosavi705"
+                    }
+                }
+            }
+        },
+        "data_queries": {
+            "position": {
+                "link": {
+                    "href": "https://api.geosas.fr/edr/collections/Indice-Sentinel2/position",
+                    "hreflang": "en",
+                    "rel": "data",
+                    "variables": {
+                        "title": "Position query",
+                        "query_type": "position",
+                        "output_formats": [
+                            "CoverageJSON",
+                            "CSV",
+                            "netCDF4"
+                        ],
+                        "default_output_format": "CoverageJSON",
+                        "crs_details": [
+                            {
+                                "crs": "EPSG:4326",
+                                "wkt": "GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.01745329251994328,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]]"
+                            },
+                            {
+                                "crs": "EPSG:2154",
+                                "wkt": "PROJCS[\"RGF93 v1 / Lambert-93\",GEOGCS[\"RGF93 v1\",DATUM[\"Reseau_Geodesique_Francais_1993_v1\",SPHEROID[\"GRS 1980\",6378137,298.257222101],TOWGS84[0,0,0,0,0,0,0]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4171\"]],PROJECTION[\"Lambert_Conformal_Conic_2SP\"],PARAMETER[\"latitude_of_origin\",46.5],PARAMETER[\"central_meridian\",3],PARAMETER[\"standard_parallel_1\",49],PARAMETER[\"standard_parallel_2\",44],PARAMETER[\"false_easting\",700000],PARAMETER[\"false_northing\",6600000],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH],AUTHORITY[\"EPSG\",\"2154\"]]"
+                            }
+                        ]
+                    }
+                }
+            },
+            "cube": {
+                "link": {
+                    "href": "https://api.geosas.fr/edr/collections/Indice-Sentinel2/cube",
+                    "hreflang": "en",
+                    "rel": "data",
+                    "variables": {
+                        "title": "Cube query",
+                        "query_type": "cube",
+                        "output_formats": [
+                            "CoverageJSON",
+                            "CSV",
+                            "netCDF4"
+                        ],
+                        "default_output_format": "CoverageJSON",
+                        "crs_details": [
+                            {
+                                "crs": "EPSG:2154",
+                                "wkt": "PROJCS[\"RGF93 v1 / Lambert-93\",GEOGCS[\"RGF93 v1\",DATUM[\"Reseau_Geodesique_Francais_1993_v1\",SPHEROID[\"GRS 1980\",6378137,298.257222101],TOWGS84[0,0,0,0,0,0,0]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4171\"]],PROJECTION[\"Lambert_Conformal_Conic_2SP\"],PARAMETER[\"latitude_of_origin\",46.5],PARAMETER[\"central_meridian\",3],PARAMETER[\"standard_parallel_1\",49],PARAMETER[\"standard_parallel_2\",44],PARAMETER[\"false_easting\",700000],PARAMETER[\"false_northing\",6600000],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH],AUTHORITY[\"EPSG\",\"2154\"]]"
+                            },
+                            {
+                                "crs": "EPSG:4326",
+                                "wkt": "GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.01745329251994328,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]]"
+                            }
+                        ]
+                    }
+                }
+            }
+        }
     }
 }

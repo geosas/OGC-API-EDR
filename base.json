@@ -30,6 +30,12 @@
       "title": "the API definition"
     },
     {
+      "href": "https://api.geosas.fr/edr/apidocs/",
+      "rel": "service-doc",
+      "type": "text/html",
+      "title": "the API documentation"
+    },
+    {
       "href": "https://docs.ogc.org/is/19-086r6/19-086r6.html",
       "rel": "conformance",
       "type": "application/json",

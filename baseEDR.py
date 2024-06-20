@@ -85,11 +85,13 @@ class zarr_query:
             xmin, xmax = bbox[xmin], bbox[xmax]
             ymin, ymax = bbox[ymin], bbox[ymax]
         # check si cell_size suffisament grande pour éviter de planter si la grille est du type x =1 ,y = .... ou x = ... ,y = 1
-        cell_size = (self.ds.y.data.max() - self.ds.y.data.min()) / self.ds.sizes["y"]
+        cell_size = (self.ds.y.data.max() -
+                     self.ds.y.data.min()) / self.ds.sizes["y"]
         if ymax - ymin < (2 * cell_size):
             ymax += cell_size
             ymin += -cell_size
-        cell_size = (self.ds.x.data.max() - self.ds.x.data.min()) / self.ds.sizes["x"]
+        cell_size = (self.ds.x.data.max() -
+                     self.ds.x.data.min()) / self.ds.sizes["x"]
         if xmax - xmin < (2 * cell_size):
             xmax += cell_size
             xmin += -cell_size
@@ -138,7 +140,8 @@ class zarr_query:
         crs_rqt = self.dico_args["crs"]
         crs_data = self.ds.crs
         if (
-            any(x in [crs_rqt, crs_rqt.lower()] for x in [crs_data.upper(), crs_data])
+            any(x in [crs_rqt, crs_rqt.lower()]
+                for x in [crs_data.upper(), crs_data])
             == False
         ):
             lamb2e_to_latlon = pyproj.Transformer.from_crs(
@@ -228,7 +231,8 @@ class zarr_query:
                         },
                         "t": {
                             "values": list(
-                                self.ds.time.dt.strftime("%Y-%m-%dT%H-%M-%SZ").data
+                                self.ds.time.dt.strftime(
+                                    "%Y-%m-%dT%H-%M-%SZ").data
                             )
                         },
                     },
@@ -252,13 +256,14 @@ class zarr_query:
                 "type": "Coverage",
                 "domain": {
                     "type": "Domain",
-                    "domainType": "Point",
+                    "domainType": "PointSeries",
                     "axes": {
-                        "x": {"value": float(self.ds.x.data)},
-                        "y": {"value": float(self.ds.y.data)},
+                        "x": {"value": [float(self.ds.x.data)]},
+                        "y": {"value": [float(self.ds.y.data)]},
                         "t": {
                             "values": list(
-                                self.ds.time.dt.strftime("%Y-%m-%dT%H-%M-%SZ").data
+                                self.ds.time.dt.strftime(
+                                    "%Y-%m-%dT%H-%M-%SZ").data
                             ),
                         },
                     },
@@ -318,7 +323,8 @@ class zarr_query:
                     if len(self.ds.dims.mapping.keys()) == 2:
                         print("transpose data 2dim")
                         shape = (shape_y, shape_x)
-                        val_out = np.reshape(self.ds[variable].values.flatten(), shape)
+                        val_out = np.reshape(
+                            self.ds[variable].values.flatten(), shape)
                         val_out = np.flipud(val_out)
                         val_out = val_out.flatten().tolist()
 
@@ -327,7 +333,8 @@ class zarr_query:
 
                         shape = (shape_y, shape_x, shape_t)
                         print(shape)
-                        val_out = np.reshape(self.ds[variable].values.flatten(), shape)
+                        val_out = np.reshape(
+                            self.ds[variable].values.flatten(), shape)
                         val_out = np.flipud(val_out)
                         val_out = val_out.flatten().tolist()
 
@@ -343,8 +350,8 @@ class zarr_query:
                         int(self.ds.sizes["x"]),
                         int(self.ds.sizes["time"]),
                     ],
-                    #'values' : list(aa['data'])
-                    #'values' : self.ds[variable].values.flatten().tolist()
+                    # 'values' : list(aa['data'])
+                    # 'values' : self.ds[variable].values.flatten().tolist()
                     "values": val_out,
                 }
             elif domainType == "area":
@@ -354,7 +361,7 @@ class zarr_query:
                     "dataType": str(self.ds[variable].data.dtype),
                     "axisNames": ["t"],
                     "shape": [int(self.ds.sizes["time"])],
-                    #'values' : list(aa['data'])
+                    # 'values' : list(aa['data'])
                     "values": self.aggregation_mtd(self.ds[variable].values, "mode"),
                 }
             elif domainType == "point":
@@ -364,7 +371,7 @@ class zarr_query:
                     "dataType": str(self.ds[variable].data.dtype),
                     "axisNames": ["t"],
                     "shape": [int(self.ds.sizes["time"])],
-                    #'values' : list(aa['data'])
+                    # 'values' : list(aa['data'])
                     "values": self.ds[variable].values.flatten().tolist(),
                 }
         return cov
@@ -674,21 +681,81 @@ class edr_base:
                 self.configJson[i]["links"].append(
                     {
                         "href": f"{self.apiUrl}collections/{i}",
-                        "rel": "service",
+                        "hreflang": "en",
+                        "rel": "collection",
                         "type": "application/json",
                     }
                 )
                 self.configJson[i]["extent"] = ds.attrs["extent"]
                 self.configJson[i]["crs"] = ds.attrs["crs"]
 
-                self.configJson[i]["parameter_names"] = []
+                self.configJson[i]["parameter_names"] = {}
                 for z in ds:
                     dico_variable = {z: {}}
                     for attr in ds[z].attrs:
                         dico_variable[z][attr] = ds[z].attrs[attr]
 
-                    self.configJson[i]["parameter_names"].append(dico_variable)
+                    self.configJson[i]["parameter_names"].update(dico_variable)
                     # if no units error, écrit rapport et saute cette variable
+                self.configJson[i]["data_queries"] = {
+                    "position": {
+                        "link": {
+                            "href": f"{self.apiUrl}collections/{i}/position",
+                            "hreflang": "en",
+                            "rel": "data",
+                            "variables": {
+                                "title": "Position query",
+                                "query_type": "position",
+                                "output_formats": [
+                                    "CoverageJSON",
+                                    "CSV",
+                                    "netCDF4"
+
+                                ],
+                                "default_output_format": "CoverageJSON",
+                                "crs_details": [
+                                    {
+                                        "crs": "EPSG:4326",
+                                        "wkt": "GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.01745329251994328,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]]"
+                                    },
+                                    {
+                                        "crs": "EPSG:2154",
+                                        "wkt": 'PROJCS["RGF93 v1 / Lambert-93",GEOGCS["RGF93 v1",DATUM["Reseau_Geodesique_Francais_1993_v1",SPHEROID["GRS 1980",6378137,298.257222101],TOWGS84[0,0,0,0,0,0,0]],PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4171"]],PROJECTION["Lambert_Conformal_Conic_2SP"],PARAMETER["latitude_of_origin",46.5],PARAMETER["central_meridian",3],PARAMETER["standard_parallel_1",49],PARAMETER["standard_parallel_2",44],PARAMETER["false_easting",700000],PARAMETER["false_northing",6600000],UNIT["metre",1,AUTHORITY["EPSG","9001"]],AXIS["Easting",EAST],AXIS["Northing",NORTH],AUTHORITY["EPSG","2154"]]'
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "cube": {
+                        "link": {
+                            "href": f"{self.apiUrl}collections/{i}/cube",
+                            "hreflang": "en",
+                            "rel": "data",
+                            "variables": {
+                                "title": "Cube query",
+                                "query_type": "cube",
+                                "output_formats": [
+                                    "CoverageJSON",
+                                    "CSV",
+                                    "netCDF4"
+
+                                ],
+                                "default_output_format": "CoverageJSON",
+                                "crs_details": [
+                                    {
+                                        "crs": "EPSG:2154",
+                                        "wkt": 'PROJCS["RGF93 v1 / Lambert-93",GEOGCS["RGF93 v1",DATUM["Reseau_Geodesique_Francais_1993_v1",SPHEROID["GRS 1980",6378137,298.257222101],TOWGS84[0,0,0,0,0,0,0]],PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4171"]],PROJECTION["Lambert_Conformal_Conic_2SP"],PARAMETER["latitude_of_origin",46.5],PARAMETER["central_meridian",3],PARAMETER["standard_parallel_1",49],PARAMETER["standard_parallel_2",44],PARAMETER["false_easting",700000],PARAMETER["false_northing",6600000],UNIT["metre",1,AUTHORITY["EPSG","9001"]],AXIS["Easting",EAST],AXIS["Northing",NORTH],AUTHORITY["EPSG","2154"]]'
+                                    },
+                                
+                                    {
+                                        "crs": "EPSG:4326",
+                                        "wkt": "GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.01745329251994328,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]]"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
             except:
                 print(i, "error in this zarr")
         print("write config")
@@ -698,7 +765,8 @@ class edr_base:
             "w",
             encoding="utf8",
         ) as outfile:
-            outfile.write(json.dumps(self.configJson, indent=4, ensure_ascii=False))
+            outfile.write(json.dumps(self.configJson,
+                          indent=4, ensure_ascii=False))
 
     def collection(self, name=False):
         if name != False:
@@ -709,7 +777,15 @@ class edr_base:
                 collec[key] = self.configJson[name][key]
 
         else:
-            collec = {"collections": []}
+            collec = {"collections": [],
+                      "links": [
+                {
+                    "href": f"{self.apiUrl}collections",
+                    "hreflang": "en",
+                    "rel": "self",
+                    "type": "application/json"
+                }
+            ]}
             for i in self.configJson:
                 obj = {}
                 for key in self.configJson[i]:

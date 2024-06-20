@@ -1,8 +1,11 @@
 {
     "safran-isba": {
-        "path": "/data2/meteo/safran/quotidien/SAFRAN_1958-2024_11_param_v1.zarr"
+        "path": "/data2/meteo/safran/quotidien/SAFRAN_1958-2024_12_param_maj_2.zarr"
     },
     "RPG-Raster": {
         "path": "/data2/rpg/rpg_2006-2021.zarr"
+    },
+    "Indice-Sentinel2": {
+        "path": "/data2/rpg/indice/IV_mcariosavi.zarr"
     }
 }
